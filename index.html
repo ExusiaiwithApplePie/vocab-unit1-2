@@ -243,6 +243,7 @@ body{
       <button class="chip" id="btnImport">从别处导入</button>
       <button class="chip" id="btnExport">备份进度</button>
       <button class="chip" id="btnImportBak">恢复进度</button>
+      <button class="chip" id="btnResetWrong">重置错题本</button>
     </div>
   </section>
 
@@ -749,6 +750,17 @@ $('btnStart').onclick=()=>startSet();
 $('btnBack').onclick=()=>{ if(!$('v-quiz').hidden&&set&&!confirm('退出这一组？本组进度不保留')) return; show('home'); renderHome(); };
 $('btnWrong').onclick=()=>{ renderWrong(); show('wrong'); };
 $('btnPracticeWrong').onclick=()=>{ const l=wrongList(); if(l.length) startSet(l); };
+
+/* 重置错题本：只清掉错词标记，已练次数与掌握记录保持不变 */
+$('btnResetWrong').onclick=()=>{
+  const list=wrongList();
+  if(!list.length){ toast('错题本已经是空的'); return; }
+  if(!confirm('清空错题本？\n\n将移除 '+list.length+' 个错词的记录，已练次数和掌握数不变。此操作无法撤销。')) return;
+  let n=0;
+  list.forEach(d=>{ const c=store.cards[d.id]; if(c){ c.w=0; n++; } });
+  save(); renderWrong(); renderHome();
+  toast('已清空 '+n+' 个错词');
+};
 $('btnAgain').onclick=()=>startSet();
 $('btnRetryWrong').onclick=()=>{ if(wrongD.length) startSet(wrongD.slice()); };
 $('btnAddManual').onclick=()=>{ show('add'); };
