@@ -60,6 +60,12 @@ body{
 .chip{border:1px solid var(--line);background:var(--card);color:var(--ink2);font:inherit;font-size:12.5px;
   padding:6px 11px;border-radius:20px;cursor:pointer;transition:.15s;white-space:nowrap}
 .chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip .n{opacity:.55;font-size:11px;margin-left:5px;font-variant-numeric:tabular-nums}
+.chip.on .n{opacity:.8}
+.chip.parent{border-color:var(--ink);color:var(--ink);background:#ebe9e2}
+.chip.sm{padding:5px 10px;font-size:12px}
+.chips.sub{margin-top:8px}
+.lab.tight{margin-top:12px}
 
 .acts2{display:flex;gap:9px;margin:18px 0 4px}
 .btn{flex:1;border:0;border-radius:12px;padding:13px;font:inherit;font-size:15px;font-weight:620;cursor:pointer}
@@ -198,8 +204,10 @@ body{
     <div class="lab"><span>选择题型</span><i>每组 10 题</i></div>
     <div class="types" id="typeList"></div>
 
-    <div class="lab"><span>出题范围</span><i id="poolN"></i></div>
+    <div class="lab"><span>① 单元 / 范围</span><i id="poolN"></i></div>
     <div class="chips" id="scopeChips"></div>
+    <div class="lab tight" id="chapLab" hidden><span id="chapTitle">② 课文</span><i>不选就是整个单元</i></div>
+    <div class="chips" id="scopeSub" hidden></div>
 
     <div class="acts2">
       <button class="btn btn-main" id="btnStart">开始做题</button>
@@ -375,14 +383,27 @@ function uniqByWord(a){
   return out;
 }
 
+// 范围里词不够 10 个时：先在同一单元里补，再退回全书
+function topUp(pick,n,ok){
+  if(n<=0) return [];
+  const have=new Set(pick.map(d=>d.id));
+  const su=scopeUnitOf(pick);
+  const tiers=su?[DATA.filter(d=>d.u===su),DATA]:[DATA];
+  const out=[];
+  for(const t of tiers){
+    if(out.length>=n) break;
+    const rest=uniqByWord(t.filter(d=>ok(d)&&!have.has(d.id)&&!out.some(o=>o.id===d.id)));
+    out.push(...sample(rest,n-out.length));
+  }
+  return out;
+}
+
 // I·A：10 空 + 15 词库
 function buildIA(scope){
-  const cand=scope.filter(d=>d.x&&locate(d.x,d.w));
+  const ok=d=>d.x&&locate(d.x,d.w);
+  const cand=scope.filter(ok);
   let pick=sample(cand,SET);
-  if(pick.length<SET){
-    const rest=uniqByWord(DATA.filter(d=>d.x&&locate(d.x,d.w))).filter(d=>!pick.some(p=>p.id===d.id));
-    pick=pick.concat(sample(rest,SET-pick.length));
-  }
+  if(pick.length<SET) pick=pick.concat(topUp(pick,SET-pick.length,ok));
   const items=pick.map(d=>{
     const L=locate(d.x,d.w);
     return {kind:'IA',d,pre:L.s.slice(0,L.i),post:L.s.slice(L.j),ans:d.w};
@@ -406,8 +427,9 @@ function bankDistractors(answersD,answersSet,n){
 
 // I·B：10 句划线词 + A–J 定义
 function buildIB(scope){
-  let cand=scope.filter(d=>defOk(d.e)&&d.x&&locate(d.x,d.w));
-  if(cand.length<SET) cand=DATA.filter(d=>defOk(d.e)&&d.x&&locate(d.x,d.w));
+  const ok=d=>defOk(d.e)&&d.x&&locate(d.x,d.w);
+  let cand=scope.filter(ok);
+  if(cand.length<SET) cand=cand.concat(topUp(cand,SET-cand.length,ok));
   const picked=[];
   for(const d of sample(cand,cand.length)){
     if(picked.length>=SET) break;
@@ -425,8 +447,9 @@ function buildIB(scope){
 
 // I·C：10 题加粗词 + 四个释义
 function buildIC(scope){
-  let cand=scope.filter(d=>defOk(d.e)&&d.x&&locate(d.x,d.w));
-  if(cand.length<SET) cand=DATA.filter(d=>defOk(d.e)&&d.x&&locate(d.x,d.w));
+  const ok=d=>defOk(d.e)&&d.x&&locate(d.x,d.w);
+  let cand=scope.filter(ok);
+  if(cand.length<SET) cand=cand.concat(topUp(cand,SET-cand.length,ok));
   let pick=sample(cand,SET);
   const items=pick.map(d=>{
     const L=locate(d.x,d.w);
@@ -469,9 +492,18 @@ function buildIIA(scope){
   const pick=cand[Math.floor(Math.random()*cand.length)];
   const p=pick.p;
   let inScope=pick.idx.filter(i=>scopeIds.has(p.seg[i].id));
-  if(!inScope.length) inScope=pick.idx;
-  const n=Math.min(SET,inScope.length);
-  const chosen=sample(inScope,n).sort((a,b)=>a-b);
+  if(!inScope.length) inScope=pick.idx.slice();
+  // 短文里属于本范围的词不足 10 个时，先用同单元的补
+  let slots=inScope.slice();
+  if(slots.length<SET){
+    const rest=pick.idx.filter(i=>slots.indexOf(i)<0);
+    const su=scopeUnitOf(scope);
+    const same=su?rest.filter(i=>{ const d=byId[p.seg[i].id]; return d&&d.u===su; }):[];
+    slots=slots.concat(same);
+    if(slots.length<SET) slots=slots.concat(rest.filter(i=>slots.indexOf(i)<0));
+  }
+  const n=Math.min(SET,slots.length);
+  const chosen=sample(slots,n).sort((a,b)=>a-b);
   const items=chosen.map(i=>{
     const d=byId[p.seg[i].id];
     return {kind:'IIA',d,slot:i,ans:d.w};
@@ -487,10 +519,33 @@ const build={
   IA:buildIA, IB:buildIB, IC:buildIC, IIA:buildIIA
 };
 
+/* ---------- 范围：单元 → 课文 两级 ---------- */
+const unitNo=u=>parseInt((String(u).match(/\d+/)||[0])[0],10)||0;
+const chKey=c=>{ const m=String(c).match(/Ch\s*(\d+)\s*R\s*(\d+)/i); return m?(+m[1])*100+(+m[2]):0; };
+const unitsAll=()=>[...new Set(DATA.map(d=>d.u))].sort((a,b)=>unitNo(a)-unitNo(b));
+const chaptersOf=u=>[...new Set(DATA.filter(d=>d.u===u).map(d=>d.c))].sort((a,b)=>chKey(a)-chKey(b));
+const chUnit=c=>{ const d=DATA.find(x=>x.c===c); return d?d.u:null; };
+const countU=u=>DATA.filter(d=>d.u===u).length;
+const countC=c=>DATA.filter(d=>d.c===c).length;
+// 某篇课文在短文（II·A 用）里被用到的词数，取覆盖最多的那篇
+const passHits=c=>{ let m=0; PASS.forEach(p=>{ const n=p.seg.filter(s=>s.id&&s.id.split('|')[1]===c).length; if(n>m) m=n; }); return m; };
+
+function activeUnit(){
+  const s=prefs.scope||'all';
+  if(s.indexOf('u:')===0) return s.slice(2);
+  if(s.indexOf('ch:')===0) return chUnit(s.slice(3));
+  return null;
+}
+function scopeUnitOf(arr){
+  const us=[...new Set(arr.map(d=>d.u))];
+  return us.length===1?us[0]:null;
+}
+
 function pool(){
-  const s=prefs.scope;
-  if(s==='all'||!s) return DATA;
-  if(s.indexOf('u:')===0){ const u=s.slice(2); return DATA.filter(d=>d.u===u); }
+  const s=prefs.scope||'all';
+  if(s==='all') return DATA;
+  if(s==='unmastered') return DATA.filter(d=>!mastered(d));
+  if(s.indexOf('u:')===0) return DATA.filter(d=>d.u===s.slice(2));
   if(s.indexOf('tag:')===0) return DATA.filter(d=>d.t===s.slice(4));
   if(s.indexOf('ch:')===0) return DATA.filter(d=>d.c===s.slice(3));
   return DATA;
@@ -508,25 +563,43 @@ function renderHome(){
       <span class="tx"><span class="nm">${t.nm}</span><span class="ds">${t.ds}</span></span>
     </button>`).join('');
 
-  const units=[...new Set(DATA.map(d=>d.u))].sort((a,b)=>{
-    const na=parseInt((a.match(/\d+/)||[0])[0],10)||0, nb=parseInt((b.match(/\d+/)||[0])[0],10)||0;
-    return na-nb;
-  });
-  const chips=[['all','全部 '+DATA.length+' 词']]
-    .concat(units.map(u=>['u:'+u,u]))
-    .concat([['tag:四级','四级'],['tag:六级','六级'],['tag:学术','学术'],['unmastered','只刷没掌握']]);
-  const chs=[...new Set(DATA.map(d=>d.c))];
-  $('scopeChips').innerHTML=chips.map(([v,n])=>
-    `<button class="chip${prefs.scope===v?' on':''}" data-s="${v}">${n}</button>`).join('')
-    + chs.map(c=>`<button class="chip${prefs.scope==='ch:'+c?' on':''}" data-s="ch:${c}">${c}</button>`).join('');
+  const au=activeUnit();
+  const top=[['all','全部',DATA.length]]
+    .concat(unitsAll().map(u=>['u:'+u,u,countU(u)]))
+    .concat([
+      ['tag:四级','四级',DATA.filter(d=>d.t==='四级').length],
+      ['tag:六级','六级',DATA.filter(d=>d.t==='六级').length],
+      ['tag:学术','学术',DATA.filter(d=>d.t==='学术').length],
+      ['unmastered','没掌握',DATA.filter(d=>!mastered(d)).length]
+    ]);
+  $('scopeChips').innerHTML=top.map(([v,n,c])=>{
+    const cls=prefs.scope===v?' on':(v.indexOf('u:')===0&&au===v.slice(2)?' parent':'');
+    return `<button class="chip sm${cls}" data-s="${v}">${n}<span class="n">${c}</span></button>`;
+  }).join('');
 
-  $('poolN').textContent='本组范围 '+pool().length+' 词';
+  if(au){
+    $('chapLab').hidden=false; $('scopeSub').hidden=false;
+    $('chapTitle').textContent='② 课文 · '+au;
+    const subs=[['u:'+au,'整个单元',countU(au)]]
+      .concat(chaptersOf(au).map(c=>['ch:'+c,c,countC(c)]));
+    $('scopeSub').innerHTML=subs.map(([v,n,c])=>
+      `<button class="chip sm${prefs.scope===v?' on':''}" data-s="${v}">${n}<span class="n">${c}</span></button>`).join('');
+  }else{
+    $('chapLab').hidden=true; $('scopeSub').hidden=true; $('scopeSub').innerHTML='';
+  }
+
+  const p=pool(), su=scopeUnitOf(p);
+  let note='';
+  if(prefs.type==='IIA' && (prefs.scope||'').indexOf('ch:')===0 && passHits(prefs.scope.slice(3))<5)
+    note=' · 该课文无配文，II·A 用同单元短文';
+  $('poolN').textContent='本组范围 '+p.length+' 词'+
+    (p.length<SET?'（不足 '+SET+'，从'+(su?'同单元':'全书')+'补足）':'')+note;
 }
 
 /* ---------- 开始 ---------- */
 function startSet(list, type){
   const t=type||prefs.type;
-  const sc=list||(prefs.scope==='unmastered'?DATA.filter(d=>!mastered(d)):pool());
+  const sc=list||pool();
   if(sc.length<3) toast('范围里的词太少，先选大一点的范围');
   set=build[t](sc);
   if(!set.items.length){ toast('这个范围出不了题，换一个范围'); return; }
@@ -787,10 +860,12 @@ $('typeList').addEventListener('click',e=>{
   const b=e.target.closest('.type'); if(!b) return;
   prefs.type=b.dataset.k; savePrefs(); renderHome();
 });
-$('scopeChips').addEventListener('click',e=>{
+const pickScope=e=>{
   const b=e.target.closest('.chip'); if(!b) return;
   prefs.scope=b.dataset.s; savePrefs(); renderHome();
-});
+};
+$('scopeChips').addEventListener('click',pickScope);
+$('scopeSub').addEventListener('click',pickScope);
 
 $('btnAddOk').onclick=()=>{
   const raw=$('addBox').value.trim();
