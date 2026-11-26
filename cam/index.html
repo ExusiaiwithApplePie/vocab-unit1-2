@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f3ef">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="词汇刷题">
+<title>大学英语 1 词汇刷题 · 剑桥雅思核心词汇 Unit 1–5、7</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxZjI0MzAiLz48dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtc2l6ZT0iMjkiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EsQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QTE8L3RleHQ+PC9zdmc+">
+<style>
+:root{
+  --bg:#f4f3ef; --card:#fff; --ink:#16171a; --ink2:#6d7178; --ink3:#9aa0a6;
+  --line:#e7e5df; --ok:#18794e; --no:#b4362b;
+  --okbg:#e8f4ec; --nobg:#fbeae8; --warn:#8a5a00;
+  --acc:#16171a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.app{max-width:600px;margin:0 auto;padding:14px 14px calc(26px + env(safe-area-inset-bottom))}
+
+/* 顶栏 */
+.hd{display:flex;align-items:center;gap:10px;margin:2px 0 2px}
+.hd h1{margin:0;font-size:19px;font-weight:680;letter-spacing:-.01em;flex:1}
+.icon{border:0;background:transparent;color:var(--ink2);font-size:13.5px;padding:6px 2px;cursor:pointer}
+.sub{margin:0 0 14px;font-size:12px;color:var(--ink3);line-height:1.5}
+
+.warnbar{background:#fff7e6;border:1px solid #f0dfb8;color:var(--warn);font-size:12px;line-height:1.55;padding:9px 11px;border-radius:10px;margin:0 0 12px}
+
+/* 统计 */
+.stats{display:flex;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 4px;margin-bottom:14px}
+.stats>div{flex:1;text-align:center;position:relative}
+.stats>div+div::before{content:"";position:absolute;left:0;top:15%;height:70%;width:1px;background:var(--line)}
+.stats b{display:block;font-size:19px;font-weight:680;font-variant-numeric:tabular-nums}
+.stats span{font-size:11px;color:var(--ink3)}
+.stats .ok b{color:var(--ok)}
+.stats .no b{color:var(--no)}
+
+/* 题型卡 */
+.lab{font-size:11.5px;color:var(--ink3);letter-spacing:.04em;margin:16px 0 8px;display:flex;justify-content:space-between}
+.lab i{font-style:normal;color:var(--ink3)}
+.types{display:flex;flex-direction:column;gap:8px}
+.type{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;background:var(--card);
+  border:1px solid var(--line);border-radius:13px;padding:12px 13px;cursor:pointer;font:inherit;color:inherit;transition:.15s}
+.type .code{flex:none;width:44px;height:44px;border-radius:11px;background:#f0eee8;color:var(--ink2);
+  display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;letter-spacing:.02em}
+.type .tx{flex:1;min-width:0}
+.type .nm{display:block;font-weight:640;font-size:14.5px;margin-bottom:2px}
+.type .ds{display:block;font-size:11.5px;color:var(--ink3);line-height:1.45}
+.type.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.type.on .code{background:var(--acc);color:#fff}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink2);font:inherit;font-size:12.5px;
+  padding:6px 11px;border-radius:20px;cursor:pointer;transition:.15s;white-space:nowrap}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip .n{opacity:.55;font-size:11px;margin-left:5px;font-variant-numeric:tabular-nums}
+.chip.on .n{opacity:.8}
+.chip.parent{border-color:var(--ink);color:var(--ink);background:#ebe9e2}
+.chip.sm{padding:5px 10px;font-size:12px}
+.chips.sub{margin-top:8px}
+.lab.tight{margin-top:12px}
+
+.acts2{display:flex;gap:9px;margin:18px 0 4px}
+.btn{flex:1;border:0;border-radius:12px;padding:13px;font:inherit;font-size:15px;font-weight:620;cursor:pointer}
+.btn-main{background:var(--acc);color:#fff}
+.btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn-sm{padding:9px 12px;font-size:13px;border-radius:10px;flex:none}
+
+/* 答题 */
+.pbar{height:3px;background:#e6e3dc;border-radius:3px;overflow:hidden;margin:6px 0 12px}
+.pbar>i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
+.qhead{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink3);margin-bottom:10px}
+.qhead .t{font-weight:600;color:var(--ink2)}
+.qhead .r{margin-left:auto;font-variant-numeric:tabular-nums}
+
+.stem{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 14px;font-size:16px;line-height:1.85}
+.stem .ln{font-size:11.5px;color:var(--ink3);margin-bottom:7px;font-weight:500}
+.big{font-weight:680;letter-spacing:-.01em}
+.big.ul{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+.big.bd{font-weight:800}
+.blank{display:inline-block;min-width:74px;text-align:center;border-bottom:1.6px solid var(--ink3);
+  margin:0 3px;font-weight:640;color:var(--ink3);vertical-align:baseline;padding:0 4px}
+.blank.cur{border-bottom-color:var(--acc);background:#f0eee6;border-radius:4px 4px 0 0}
+.blank.ok{border-bottom-color:var(--ok);color:var(--ok)}
+.blank.no{border-bottom-color:var(--no);color:var(--no);text-decoration:line-through}
+
+/* 词库 */
+.bank{margin-top:12px}
+.btitle{font-size:11.5px;color:var(--ink3);margin:0 0 8px;display:flex;justify-content:space-between}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.bw{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13.5px;
+  padding:10px 4px;border-radius:9px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:.12s}
+.bw:active{transform:scale(.97)}
+.bw.used{color:#c3c0b8;text-decoration:line-through;background:#f7f6f2;border-style:dashed}
+.bw.ok{background:var(--okbg);border-color:#a9d7bd;color:var(--ok);font-weight:640}
+.bw.no{background:var(--nobg);border-color:#e8b5b0;color:var(--no)}
+.bw.ok::after{content:" ✓"}
+.bw.no::after{content:" ✕"}
+
+/* 定义列表 (I·B) */
+.deflist{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.drow{display:flex;gap:9px;align-items:flex-start;width:100%;text-align:left;background:var(--card);
+  border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:inherit;font-size:13px;line-height:1.5;cursor:pointer;color:inherit}
+.drow .L{flex:none;width:19px;font-weight:700;color:var(--ink2);font-size:12.5px}
+.drow.used{background:#f7f6f2;color:#bcb9b1;border-style:dashed}
+.drow.used .L{color:#cbc8c0}
+.drow.ok{background:var(--okbg);border-color:#a9d7bd}
+.drow.ok .L{color:var(--ok)}
+.drow.no{background:var(--nobg);border-color:#e8b5b0}
+.drow.no .L{color:var(--no)}
+
+/* 选项 (I·C) */
+.opts{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:var(--card);
+  border:1px solid var(--line);border-radius:11px;padding:11px 12px;font:inherit;font-size:13.5px;line-height:1.55;cursor:pointer;color:inherit}
+.opt .i{flex:none;width:20px;height:20px;border-radius:6px;background:#f0eee8;color:var(--ink2);
+  display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700}
+.opt.ok{background:var(--okbg);border-color:#a9d7bd}
+.opt.ok .i{background:var(--ok);color:#fff}
+.opt.no{background:var(--nobg);border-color:#e8b5b0}
+.opt.no .i{background:var(--no);color:#fff}
+
+/* 短文 (II·A) */
+.passage{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px;
+  font-size:15px;line-height:2.05;max-height:42vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.passage .ttl{font-size:12px;color:var(--ink3);margin-bottom:6px}
+.passage .blank{min-width:58px}
+.passage .bn{display:inline-block;min-width:22px;text-align:center;font-size:10.5px;color:var(--ink3);vertical-align:super;margin-left:1px}
+
+/* 底部反馈 */
+.sheet-wrap{position:fixed;inset:0;background:rgba(20,20,22,.34);display:flex;align-items:flex-end;z-index:40;padding:0}
+.sheet{background:var(--card);width:100%;max-width:600px;margin:0 auto;border-radius:18px 18px 0 0;
+  padding:16px 16px calc(16px + env(safe-area-inset-bottom));animation:up .22s ease-out;max-height:86vh;overflow-y:auto}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+.sheet .verd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:640;margin-bottom:10px}
+.sheet .verd.ok{color:var(--ok)}
+.sheet .verd.no{color:var(--no)}
+.sheet .wline{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+.sheet .w{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.sheet .ipa{font-size:12.5px;color:var(--ink3)}
+.spk{border:1px solid var(--line);background:var(--card);border-radius:8px;font-size:12px;padding:3px 8px;cursor:pointer;color:var(--ink2)}
+.sheet .def{font-size:12.8px;color:var(--ink2);margin:6px 0 0;line-height:1.6}
+.sheet .zh{font-size:13.5px;margin:2px 0 0}
+.sheet .ex{margin-top:10px;padding-top:9px;border-top:1px dashed var(--line);font-size:12.8px;line-height:1.65}
+.sheet .ex .en{color:var(--ink)}
+.sheet .ex .cn{color:var(--ink3);margin-top:2px}
+.sheet .acts{display:flex;gap:9px;margin-top:14px}
+
+/* 结果 / 错题本 */
+.score{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 16px;text-align:center;margin-bottom:12px}
+.score b{display:block;font-size:36px;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.score b small{font-size:15px;color:var(--ink3);font-weight:600}
+.score p{margin:6px 0 0;font-size:12.5px;color:var(--ink2)}
+.rows{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.row{display:flex;gap:10px;align-items:center;padding:11px 13px;border-bottom:1px solid var(--line);font-size:13.5px}
+.row:last-child{border-bottom:0}
+.row .w{font-weight:620;flex:none;max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .z{color:var(--ink3);font-size:12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .n{color:var(--no);font-size:11.5px;flex:none}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:13px;padding:26px 18px;text-align:center;
+  color:var(--ink3);font-size:12.8px;line-height:1.7}
+.empty b{display:block;color:var(--ink2);font-size:14px;margin-bottom:5px}
+
+/* 通用弹层 */
+.mask{position:fixed;inset:0;background:rgba(20,20,22,.4);display:flex;align-items:center;justify-content:center;z-index:50;padding:18px}
+.dlg{background:var(--card);border-radius:16px;width:100%;max-width:460px;padding:18px;max-height:80vh;overflow-y:auto}
+.dlg h3{margin:0 0 6px;font-size:15.5px}
+.dlg p{margin:0 0 10px;font-size:12px;color:var(--ink3);line-height:1.6}
+.dlg textarea{width:100%;height:130px;border:1px solid var(--line);border-radius:10px;padding:10px;
+  font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;resize:vertical;color:var(--ink);background:#fbfaf7}
+.dlg .acts{display:flex;gap:9px;margin-top:12px}
+.msg{font-size:12px;color:var(--ink2);margin-top:8px;line-height:1.6}
+.toast{position:fixed;left:50%;bottom:calc(26px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  background:rgba(24,24,26,.93);color:#fff;font-size:13px;padding:10px 16px;border-radius:20px;z-index:99;max-width:80vw;text-align:center}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="hd">
+    <h1 id="title">大学英语 1 · 词汇刷题</h1>
+    <button class="icon" id="btnBack" hidden>返回</button>
+  </div>
+  <p class="sub" id="subline">剑桥雅思核心词汇精讲精练（中级篇）· Unit 1–5、7 · 267 词</p>
+
+  <!-- 首页 -->
+  <section id="v-home">
+    <div class="warnbar" id="storeWarn" hidden>当前打开方式无法保存进度，关掉页面记录就没了。请把文件用手机自带浏览器（Safari / Chrome）打开，别用微信内置预览。</div>
+
+    <div class="stats">
+      <div><b id="sDone">0</b><span>已练</span></div>
+      <div class="ok"><b id="sOk">0</b><span>掌握</span></div>
+      <div class="no"><b id="sWrong">0</b><span>错词</span></div>
+    </div>
+
+    <div class="lab"><span>选择题型</span><i>每组 10 题</i></div>
+    <div class="types" id="typeList"></div>
+
+    <div class="lab"><span>出题范围</span><i id="poolN"></i></div>
+    <div class="chips" id="scopeChips"></div>
+    <div class="lab tight" id="chapLab" hidden><span id="chapTitle">② 课文</span><i>不选就是整个单元</i></div>
+    <div class="chips" id="scopeSub" hidden></div>
+
+    <div class="acts2">
+      <button class="btn btn-main" id="btnStart">开始做题</button>
+      <button class="btn btn-ghost" id="btnWrong">错题本</button>
+    </div>
+  </section>
+
+  <!-- 答题 -->
+  <section id="v-quiz" hidden>
+    <div class="qhead">
+      <span class="t" id="qtype"></span>
+      <span id="cnt"></span>
+      <span class="r" id="score"></span>
+    </div>
+    <div class="pbar"><i id="prog"></i></div>
+    <div id="qbody"></div>
+  </section>
+
+  <!-- 结果 -->
+  <section id="v-done" hidden>
+    <div class="score">
+      <b><span id="donePts">0</span><small id="doneFull"> / 15</small></b>
+      <p id="doneSub"></p>
+    </div>
+    <div id="doneWrong"></div>
+    <div class="acts2" style="margin-top:14px">
+      <button class="btn btn-main" id="btnAgain">再来一组</button>
+      <button class="btn btn-ghost" id="btnRetryWrong" hidden>只刷这组错的</button>
+    </div>
+  </section>
+
+  <!-- 错题本 -->
+  <section id="v-wrong" hidden>
+    <div class="lab"><span>错题本</span><i id="wbN"></i></div>
+    <div id="wbList"></div>
+    <div class="acts2" style="margin-top:14px">
+      <button class="btn btn-main" id="btnPracticeWrong">练这些错词</button>
+      <button class="btn btn-ghost" id="btnAddManual">手动加词</button>
+    </div>
+    <div class="chips" style="margin-top:10px">
+      <button class="chip" id="btnImport">从别处导入</button>
+      <button class="chip" id="btnExport">备份进度</button>
+      <button class="chip" id="btnImportBak">恢复进度</button>
+      <button class="chip" id="btnResetWrong">重置错题本</button>
+    </div>
+  </section>
+
+  <!-- 手动加词 -->
+  <section id="v-add" hidden>
+    <div class="lab"><span>手动加词</span><i>会加入错题本</i></div>
+    <textarea id="addBox" style="width:100%;height:150px;border:1px solid var(--line);border-radius:12px;padding:11px;font:13px/1.6 inherit;background:#fff;color:var(--ink)"></textarea>
+    <p class="msg">一行一个，或用逗号、空格分开。输前几个字母也认（输 amor 会命中 amorphous）。</p>
+    <div class="acts2">
+      <button class="btn btn-main" id="btnAddOk">加入</button>
+      <button class="btn btn-ghost" id="btnAddClear">清空</button>
+    </div>
+    <div class="msg" id="addMsg"></div>
+  </section>
+</div>
+
+<script>
+const DATA=[{"w":"adolescence","p":"","o":"n","e":"the period of life between childhood and adulthood","z":"青春期","x":"Adolescence is often a difficult time for teenagers and their parents.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"adolescence|Unit 1"},{"w":"adulthood","p":"","o":"n","e":"the time when a person is an adult","z":"成年","x":"In adulthood people take on responsibility for themselves and others.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"adulthood|Unit 1"},{"w":"bond","p":"","o":"n","e":"a close connection between people","z":"纽带，联系","x":"A strong bond develops between parents and their children.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"bond|Unit 1"},{"w":"brotherhood","p":"","o":"n","e":"the relationship between brothers, or a feeling of friendship","z":"兄弟情谊","x":"The two men shared a sense of brotherhood after years of working together.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"brotherhood|Unit 1"},{"w":"character","p":"","o":"n","e":"the qualities that make up a person's personality","z":"性格","x":"Her character was shaped by a strict but loving upbringing.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"character|Unit 1"},{"w":"childhood","p":"","o":"n","e":"the time when you are a child","z":"童年","x":"He spent most of his childhood in a small village.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"childhood|Unit 1"},{"w":"conflict","p":"","o":"n","e":"a serious disagreement between people","z":"冲突","x":"There is often conflict between what parents want and what teenagers want.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"conflict|Unit 1"},{"w":"connection","p":"","o":"n","e":"a relationship or link between things or people","z":"联系","x":"Researchers found a connection between early reading and later success.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"connection|Unit 1"},{"w":"fatherhood","p":"","o":"n","e":"the state of being a father","z":"父亲身份","x":"Fatherhood changed his attitude to work and family.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"fatherhood|Unit 1"},{"w":"friendship","p":"","o":"n","e":"a relationship between friends","z":"友谊","x":"Friendship is built on trust and shared experience.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"friendship|Unit 1"},{"w":"instinct","p":"","o":"n","e":"a natural ability to know or do something without being taught","z":"本能","x":"A mother's instinct tells her when her baby is unwell.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"instinct|Unit 1"},{"w":"interaction","p":"","o":"n","e":"communication or activity between people","z":"互动","x":"Regular interaction with other children helps a child learn language.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"interaction|Unit 1"},{"w":"motherhood","p":"","o":"n","e":"the state of being a mother","z":"母亲身份","x":"She gave up a successful career for motherhood.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"motherhood|Unit 1"},{"w":"nature","p":"","o":"n","e":"the qualities a person is born with; the natural world","z":"天性；自然","x":"Some researchers argue that nature matters more than nurture.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"nature|Unit 1"},{"w":"parent","p":"","o":"n","e":"a mother or father","z":"父母","x":"Every parent wants the best for their child.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"parent|Unit 1"},{"w":"relation","p":"","o":"n","e":"a member of your family; a connection","z":"亲属；关系","x":"She invited all her relations to the wedding.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"relation|Unit 1"},{"w":"relationship","p":"","o":"n","e":"the way in which two people are connected","z":"关系","x":"The relationship between brothers can be close or competitive.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"relationship|Unit 1"},{"w":"relative","p":"","o":"n","e":"a member of your family","z":"亲戚","x":"Her relatives lived in the same town for generations.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"relative|Unit 1"},{"w":"resemblance","p":"","o":"n","e":"the fact of looking or being similar to someone","z":"相似","x":"There is a striking resemblance between the two sisters.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"resemblance|Unit 1"},{"w":"rivalry","p":"","o":"n","e":"competition between people who want the same thing","z":"竞争","x":"Sibling rivalry is common when a new baby arrives.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"rivalry|Unit 1"},{"w":"sibling","p":"","o":"n","e":"a brother or sister","z":"兄弟姐妹","x":"Youngest siblings are often described as more sociable.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"sibling|Unit 1"},{"w":"teenager","p":"","o":"n","e":"a young person between 13 and 19 years old","z":"青少年","x":"Many teenagers want more independence from their parents.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"teenager|Unit 1"},{"w":"temperament","p":"","o":"n","e":"a person's basic nature, which affects how they behave","z":"性情，气质","x":"He has a calm temperament and rarely gets angry.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"temperament|Unit 1"},{"w":"ties","p":"","o":"n","e":"close connections with people or places","z":"联系，纽带","x":"She kept strong ties with her home town.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"ties|Unit 1"},{"w":"upbringing","p":"","o":"n","e":"the way in which a child is cared for and educated","z":"抚养，教养","x":"His strict upbringing made him very disciplined.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"upbringing|Unit 1"},{"w":"close-knit","p":"","o":"adj","e":"(of a family or group) very close to each other","z":"关系紧密的","x":"They come from a close-knit family that meets every Sunday.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"close-knit|Unit 1"},{"w":"maternal","p":"","o":"adj","e":"relating to a mother","z":"母亲的","x":"Maternal instinct is often observed in animals as well as humans.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"maternal|Unit 1"},{"w":"parental","p":"","o":"adj","e":"relating to parents","z":"父母的","x":"Parental influence is strongest in the early years of life.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"parental|Unit 1"},{"w":"rewarding","p":"","o":"adj","e":"giving a feeling of satisfaction","z":"有回报的，值得的","x":"Bringing up children is hard but rewarding.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"rewarding|Unit 1"},{"w":"stable","p":"","o":"adj","e":"not likely to change or fail","z":"稳定的","x":"Children need a stable family background.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"stable|Unit 1"},{"w":"accommodate","p":"","o":"v","e":"to provide enough space for someone","z":"容纳","x":"The house was too small to accommodate a large family.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"accommodate|Unit 1"},{"w":"adopt","p":"","o":"v","e":"to take another person's child into your family legally","z":"收养","x":"They decided to adopt a child from abroad.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"adopt|Unit 1"},{"w":"break down","p":"","o":"v","e":"to fail or stop working properly","z":"破裂，出故障","x":"The relationship broke down after years of arguments.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"break down|Unit 1"},{"w":"develop","p":"","o":"v","e":"to grow or change into something stronger or more advanced","z":"发展","x":"Children develop language skills at very different rates.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"develop|Unit 1"},{"w":"endure","p":"","o":"v","e":"to suffer something difficult patiently","z":"忍受","x":"She endured the criticism without complaining.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"endure|Unit 1"},{"w":"establish","p":"","o":"v","e":"to start something that is intended to last","z":"建立","x":"He established a close relationship with his stepfather.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"establish|Unit 1"},{"w":"inherit","p":"","o":"v","e":"to receive money or qualities from parents or ancestors","z":"继承","x":"She inherited her red hair from her grandmother.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"inherit|Unit 1"},{"w":"interact","p":"","o":"v","e":"to communicate with and react to other people","z":"互动","x":"Babies interact with their mothers long before they can speak.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"interact|Unit 1"},{"w":"nurture","p":"","o":"v","e":"to care for and encourage the growth of someone","z":"养育，培养","x":"Parents nurture their children's confidence.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"nurture|Unit 1"},{"w":"relate to","p":"","o":"v","e":"to understand someone and get on with them","z":"理解，与…相处","x":"Teenagers find it easier to relate to friends than to parents.","y":"","c":"Unit 1 · Growing up","u":"Unit 1","t":"学术","id":"relate to|Unit 1"},{"w":"ability","p":"","o":"n","e":"the physical or mental power to do something","z":"能力","x":"A child's ability to concentrate grows steadily with age.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"ability|Unit 2"},{"w":"adolescent","p":"","o":"n","e":"a young person developing from a child into an adult","z":"青少年","x":"Adolescents often test the limits set by their parents.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"adolescent|Unit 2"},{"w":"behaviour","p":"","o":"n","e":"the way a person acts","z":"行为","x":"Teachers noticed a change in his behaviour after the move.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"behaviour|Unit 2"},{"w":"concept","p":"","o":"n","e":"an idea or principle","z":"概念","x":"Babies cannot understand the concept of time.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"concept|Unit 2"},{"w":"consequence","p":"","o":"n","e":"a result of an action","z":"结果，后果","x":"Children learn that every action has a consequence.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"consequence|Unit 2"},{"w":"gesture","p":"","o":"n","e":"a movement of the hand or head that expresses meaning","z":"手势","x":"She made a gesture to show that she agreed.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"gesture|Unit 2"},{"w":"growth","p":"","o":"n","e":"an increase in size or development","z":"成长，增长","x":"Doctors measure a child's growth every year.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"growth|Unit 2"},{"w":"height","p":"","o":"n","e":"how tall a person or thing is","z":"身高","x":"By the age of sixteen he had reached his full height.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"height|Unit 2"},{"w":"imagination","p":"","o":"n","e":"the ability to form pictures and ideas in your mind","z":"想象力","x":"Children who read a lot develop a rich imagination.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"imagination|Unit 2"},{"w":"infancy","p":"","o":"n","e":"the period when a child is a baby","z":"婴儿期","x":"Language learning begins in infancy.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"infancy|Unit 2"},{"w":"infant","p":"","o":"n","e":"a baby or very young child","z":"婴儿","x":"Infants respond to their mother's voice at birth.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"infant|Unit 2"},{"w":"knowledge","p":"","o":"n","e":"the information and understanding you have about something","z":"知识","x":"A child's knowledge of the world grows through play.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"knowledge|Unit 2"},{"w":"maturity","p":"","o":"n","e":"the state of being fully grown or behaving like an adult","z":"成熟","x":"He reached emotional maturity later than his friends.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"maturity|Unit 2"},{"w":"memory","p":"","o":"n","e":"the ability to remember things","z":"记忆力","x":"Sleep is important for the development of memory.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"memory|Unit 2"},{"w":"milestone","p":"","o":"n","e":"an important event in someone's development","z":"里程碑","x":"First words and first steps are milestones in a baby's life.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"milestone|Unit 2"},{"w":"mind","p":"","o":"n","e":"the part of a person that thinks and feels","z":"心智，思维","x":"A child's mind absorbs new information extremely fast.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"mind|Unit 2"},{"w":"peer","p":"","o":"n","e":"a person of the same age or status as you","z":"同龄人","x":"Teenagers are strongly influenced by their peers.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"peer|Unit 2"},{"w":"phase","p":"","o":"n","e":"a stage in a process of change or development","z":"阶段","x":"Most children go through a phase of refusing to eat vegetables.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"phase|Unit 2"},{"w":"rate","p":"","o":"n","e":"the speed at which something happens","z":"速度，比率","x":"Children grow at a different rate from one another.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"rate|Unit 2"},{"w":"reminder","p":"","o":"n","e":"something that makes you remember something","z":"提醒，提示物","x":"The photograph is a reminder of his childhood.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"reminder|Unit 2"},{"w":"skill","p":"","o":"n","e":"the ability to do something well","z":"技能","x":"Reading aloud helps children develop language skills.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"skill|Unit 2"},{"w":"stage","p":"","o":"n","e":"a period or step in a process of development","z":"阶段","x":"Toddlers are at the stage of learning to walk.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"stage|Unit 2"},{"w":"toddler","p":"","o":"n","e":"a young child who has just learnt to walk","z":"学步儿童","x":"Toddlers want to explore everything around them.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"toddler|Unit 2"},{"w":"transition","p":"","o":"n","e":"a change from one state or stage to another","z":"过渡","x":"The transition from primary to secondary school can be hard.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"transition|Unit 2"},{"w":"abstract","p":"","o":"adj","e":"based on general ideas rather than physical things","z":"抽象的","x":"Young children find abstract ideas difficult to grasp.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"abstract|Unit 2"},{"w":"cognitive","p":"","o":"adj","e":"relating to thinking and understanding","z":"认知的","x":"Cognitive development depends on both genes and experience.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"cognitive|Unit 2"},{"w":"clumsy","p":"","o":"adj","e":"awkward and likely to drop or break things","z":"笨拙的","x":"Adolescents often feel clumsy because their bodies grow so fast.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"clumsy|Unit 2"},{"w":"immature","p":"","o":"adj","e":"behaving in a way that is not sensible for your age","z":"不成熟的","x":"It was an immature reaction for someone of his age.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"immature|Unit 2"},{"w":"independent","p":"","o":"adj","e":"able to do things without help from others","z":"独立的","x":"Teenagers want to become more independent of their parents.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"independent|Unit 2"},{"w":"irresponsible","p":"","o":"adj","e":"not showing enough care about the results of your actions","z":"不负责任的","x":"Leaving a young child alone is irresponsible.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"irresponsible|Unit 2"},{"w":"mature","p":"","o":"adj","e":"fully grown or behaving in a sensible adult way","z":"成熟的","x":"She was remarkably mature for a fifteen-year-old.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"mature|Unit 2"},{"w":"patient","p":"","o":"adj","e":"able to wait calmly without becoming annoyed","z":"耐心的","x":"You need to be patient when a child is learning to speak.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"patient|Unit 2"},{"w":"rebellious","p":"","o":"adj","e":"refusing to obey rules or authority","z":"叛逆的","x":"Rebellious behaviour is common in adolescence.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"rebellious|Unit 2"},{"w":"significant","p":"","o":"adj","e":"large or important enough to be noticed","z":"显著的","x":"There was a significant improvement in his reading age.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"significant|Unit 2"},{"w":"acquire","p":"","o":"v","e":"to gain knowledge or a skill","z":"获得，习得","x":"Children acquire language without formal teaching.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"acquire|Unit 2"},{"w":"imitate","p":"","o":"v","e":"to copy the way someone speaks or behaves","z":"模仿","x":"Babies imitate the expressions on their parents' faces.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"imitate|Unit 2"},{"w":"master","p":"","o":"v","e":"to learn a skill completely","z":"掌握","x":"Most children master walking before their second birthday.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"master|Unit 2"},{"w":"reminisce","p":"","o":"v","e":"to talk or think about pleasant things in the past","z":"回忆，追忆","x":"Grandparents enjoy reminiscing about their own childhood.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"reminisce|Unit 2"},{"w":"visualize","p":"","o":"v","e":"to form a picture of something in your mind","z":"想象，设想","x":"Athletes visualize success before a race.","y":"","c":"Unit 2 · Mental and physical development","u":"Unit 2","t":"学术","id":"visualize|Unit 2"},{"w":"allergy","p":"","o":"n","e":"a medical condition that makes you ill when you touch or eat something","z":"过敏","x":"She developed an allergy to nuts as a child.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"allergy|Unit 3"},{"w":"anxiety","p":"","o":"n","e":"a feeling of worry or nervousness","z":"焦虑","x":"Exercise can reduce anxiety and improve mood.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"anxiety|Unit 3"},{"w":"appetite","p":"","o":"n","e":"the desire to eat food","z":"食欲","x":"Regular exercise gives you a healthy appetite.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"appetite|Unit 3"},{"w":"benefit","p":"","o":"n","e":"an advantage or good effect","z":"好处","x":"One benefit of cycling to work is improved fitness.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"benefit|Unit 3"},{"w":"craving","p":"","o":"n","e":"a strong desire for something, especially food","z":"渴望","x":"Pregnant women often have cravings for sweet food.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"craving|Unit 3"},{"w":"depression","p":"","o":"n","e":"a medical condition in which a person feels very sad","z":"抑郁症","x":"Lack of sleep can contribute to depression.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"depression|Unit 3"},{"w":"diagnosis","p":"","o":"n","e":"the identification of an illness by a doctor","z":"诊断","x":"Early diagnosis greatly improves the chances of recovery.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"diagnosis|Unit 3"},{"w":"diet","p":"","o":"n","e":"the kind of food that a person usually eats","z":"饮食","x":"A balanced diet is essential for good health.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"diet|Unit 3"},{"w":"disease","p":"","o":"n","e":"an illness that affects people, animals or plants","z":"疾病","x":"Heart disease is linked to smoking and poor diet.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"disease|Unit 3"},{"w":"disorder","p":"","o":"n","e":"an illness that affects the way the body or mind works","z":"失调，紊乱","x":"An eating disorder can be extremely dangerous.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"disorder|Unit 3"},{"w":"exercise","p":"","o":"n","e":"physical activity done to stay healthy","z":"锻炼","x":"Regular exercise strengthens the heart and lungs.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"exercise|Unit 3"},{"w":"factor","p":"","o":"n","e":"one of the things that influences a situation","z":"因素","x":"Stress is a major factor in many illnesses.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"factor|Unit 3"},{"w":"fat","p":"","o":"n","e":"the substance in food that the body stores for energy","z":"脂肪","x":"Too much fat in the diet can lead to obesity.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"fat|Unit 3"},{"w":"harm","p":"","o":"n","e":"damage or injury","z":"伤害","x":"There is no evidence that moderate coffee drinking does any harm.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"harm|Unit 3"},{"w":"health","p":"","o":"n","e":"the condition of your body and mind","z":"健康","x":"Fresh food and sleep are the basis of good health.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"health|Unit 3"},{"w":"ingredient","p":"","o":"n","e":"one of the foods used to make a dish","z":"成分，原料","x":"Processed food often contains large amounts of salt and other ingredients.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"ingredient|Unit 3"},{"w":"insomnia","p":"","o":"n","e":"the condition of being unable to sleep","z":"失眠","x":"Worry about exams can cause insomnia.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"insomnia|Unit 3"},{"w":"intake","p":"","o":"n","e":"the amount of food or drink that you take into your body","z":"摄入量","x":"Doctors recommend reducing your salt intake.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"intake|Unit 3"},{"w":"muscle","p":"","o":"n","e":"the tissue in the body that makes movement possible","z":"肌肉","x":"Lifting weights builds muscle strength.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"muscle|Unit 3"},{"w":"nutrient","p":"","o":"n","e":"a substance in food that living things need to grow","z":"营养物","x":"Vegetables are rich in essential nutrients.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"nutrient|Unit 3"},{"w":"nutrition","p":"","o":"n","e":"the process of getting the food your body needs","z":"营养","x":"Good nutrition in childhood affects growth for life.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"nutrition|Unit 3"},{"w":"obesity","p":"","o":"n","e":"the condition of being extremely overweight","z":"肥胖","x":"Obesity has become a serious public health problem.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"obesity|Unit 3"},{"w":"portion","p":"","o":"n","e":"the amount of food served to one person","z":"一份，份量","x":"Restaurants often serve very large portions.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"portion|Unit 3"},{"w":"risk","p":"","o":"n","e":"the possibility that something bad may happen","z":"风险","x":"Smoking increases the risk of lung cancer.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"risk|Unit 3"},{"w":"stress","p":"","o":"n","e":"worry caused by a difficult situation","z":"压力","x":"Long working hours create a great deal of stress.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"stress|Unit 3"},{"w":"stroke","p":"","o":"n","e":"a sudden illness caused by blood not reaching the brain","z":"中风","x":"He had a stroke and lost the use of his left arm.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"stroke|Unit 3"},{"w":"treatment","p":"","o":"n","e":"medical care given to cure an illness","z":"治疗","x":"The new treatment has proved effective in most cases.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"treatment|Unit 3"},{"w":"therapy","p":"","o":"n","e":"treatment intended to help a person recover","z":"疗法","x":"Physiotherapy is a common therapy for back pain.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"therapy|Unit 3"},{"w":"variety","p":"","o":"n","e":"many different types of something","z":"多样性","x":"A variety of foods is needed for a healthy diet.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"variety|Unit 3"},{"w":"weight","p":"","o":"n","e":"how heavy a person or thing is","z":"体重","x":"Losing even a little weight lowers blood pressure.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"weight|Unit 3"},{"w":"acute","p":"","o":"adj","e":"very serious or severe","z":"急性的，严重的","x":"He was taken to hospital with acute chest pain.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"acute|Unit 3"},{"w":"allergic","p":"","o":"adj","e":"having an allergy to something","z":"过敏的","x":"She is allergic to seafood.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"allergic|Unit 3"},{"w":"brisk","p":"","o":"adj","e":"quick and full of energy","z":"轻快的","x":"A brisk walk every morning keeps you fit.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"brisk|Unit 3"},{"w":"chronic","p":"","o":"adj","e":"continuing for a long time","z":"慢性的","x":"Chronic stress weakens the immune system.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"chronic|Unit 3"},{"w":"harmful","p":"","o":"adj","e":"causing damage","z":"有害的","x":"Too much sugar is harmful to children's teeth.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"harmful|Unit 3"},{"w":"moderate","p":"","o":"adj","e":"neither very large nor very small","z":"适度的","x":"Moderate exercise is better than none at all.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"moderate|Unit 3"},{"w":"obese","p":"","o":"adj","e":"extremely overweight in a way that is unhealthy","z":"肥胖的","x":"Obese children are more likely to become obese adults.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"obese|Unit 3"},{"w":"overweight","p":"","o":"adj","e":"heavier than is healthy","z":"超重的","x":"Overweight teenagers often suffer from low confidence.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"overweight|Unit 3"},{"w":"persistent","p":"","o":"adj","e":"continuing for a long time and difficult to stop","z":"持续不断的","x":"She has a persistent cough that will not go away.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"persistent|Unit 3"},{"w":"vital","p":"","o":"adj","e":"extremely important for life or success","z":"至关重要的","x":"Vitamins are vital for normal growth.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"vital|Unit 3"},{"w":"avoid","p":"","o":"v","e":"to stay away from something or prevent it","z":"避免","x":"You can avoid many illnesses by washing your hands.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"avoid|Unit 3"},{"w":"cure","p":"","o":"v","e":"to make an illness go away completely","z":"治愈","x":"There is still no way to cure the common cold.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"cure|Unit 3"},{"w":"eliminate","p":"","o":"v","e":"to remove something completely","z":"消除","x":"The campaign aims to eliminate junk food from school canteens.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"eliminate|Unit 3"},{"w":"prevent","p":"","o":"v","e":"to stop something from happening","z":"预防","x":"Regular check-ups help prevent serious disease.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"prevent|Unit 3"},{"w":"reduce","p":"","o":"v","e":"to make something smaller or less","z":"减少","x":"Doctors advised him to reduce his salt intake.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"reduce|Unit 3"},{"w":"skip","p":"","o":"v","e":"to not do something you usually do","z":"跳过，略过","x":"Never skip breakfast if you want to concentrate in class.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"skip|Unit 3"},{"w":"trigger","p":"","o":"v","e":"to cause something to start happening","z":"引发","x":"Stress can trigger headaches and stomach problems.","y":"","c":"Unit 3 · Keeping fit","u":"Unit 3","t":"学术","id":"trigger|Unit 3"},{"w":"activity","p":"","o":"n","e":"something that you do for interest or pleasure","z":"活动","x":"Outdoor activities are good for both body and mind.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"activity|Unit 4"},{"w":"aspect","p":"","o":"n","e":"one part of a situation or idea","z":"方面","x":"Money is only one aspect of a happy life.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"aspect|Unit 4"},{"w":"attitude","p":"","o":"n","e":"the way you think and feel about something","z":"态度","x":"A positive attitude helps people cope with pressure.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"attitude|Unit 4"},{"w":"balance","p":"","o":"n","e":"a situation in which different things exist in equal amounts","z":"平衡","x":"Most working parents struggle to achieve a balance between work and family.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"balance|Unit 4"},{"w":"competition","p":"","o":"n","e":"an event or situation in which people try to win","z":"竞争","x":"Some people thrive on competition at work.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"competition|Unit 4"},{"w":"creativity","p":"","o":"n","e":"the ability to produce new ideas","z":"创造力","x":"Hobbies such as painting develop creativity.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"creativity|Unit 4"},{"w":"desire","p":"","o":"n","e":"a strong feeling of wanting something","z":"渴望","x":"He had a strong desire to travel before starting university.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"desire|Unit 4"},{"w":"disappointment","p":"","o":"n","e":"sadness because something was not as good as you hoped","z":"失望","x":"Losing the final was a great disappointment to the team.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"disappointment|Unit 4"},{"w":"experience","p":"","o":"n","e":"knowledge or skill gained by doing something","z":"经验，经历","x":"Travelling alone was a valuable experience for her.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"experience|Unit 4"},{"w":"fulfilment","p":"","o":"n","e":"a feeling of happiness because you have achieved something","z":"满足感","x":"Volunteering gives many people a sense of fulfilment.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"fulfilment|Unit 4"},{"w":"goal","p":"","o":"n","e":"something you hope to achieve","z":"目标","x":"Her goal is to run a marathon next year.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"goal|Unit 4"},{"w":"hobby","p":"","o":"n","e":"an activity you enjoy doing in your free time","z":"爱好","x":"Photography has been his hobby since childhood.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"hobby|Unit 4"},{"w":"insight","p":"","o":"n","e":"a clear understanding of something","z":"洞察力","x":"Travel gives young people an insight into other cultures.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"insight|Unit 4"},{"w":"leisure","p":"","o":"n","e":"time when you are free to relax","z":"闲暇","x":"People with long commutes have very little leisure time.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"leisure|Unit 4"},{"w":"lifestyle","p":"","o":"n","e":"the way a person lives, including work and habits","z":"生活方式","x":"A sedentary lifestyle increases the risk of heart disease.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"lifestyle|Unit 4"},{"w":"optimist","p":"","o":"n","e":"a person who expects good things to happen","z":"乐观者","x":"Optimists tend to recover faster from illness.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"optimist|Unit 4"},{"w":"outlook","p":"","o":"n","e":"the way you think about life and the future","z":"人生观，看法","x":"Time abroad can change your whole outlook on life.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"outlook|Unit 4"},{"w":"opportunity","p":"","o":"n","e":"a chance to do something","z":"机会","x":"The job gave him the opportunity to live abroad.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"opportunity|Unit 4"},{"w":"personality","p":"","o":"n","e":"the qualities that make a person who they are","z":"性格","x":"Sport can shape a child's personality.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"personality|Unit 4"},{"w":"pessimist","p":"","o":"n","e":"a person who expects bad things to happen","z":"悲观者","x":"A pessimist sees the difficulty in every opportunity.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"pessimist|Unit 4"},{"w":"priority","p":"","o":"n","e":"something that is more important than other things","z":"优先事项","x":"For many young people, career is a higher priority than family.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"priority|Unit 4"},{"w":"pressure","p":"","o":"n","e":"the feeling of stress caused by demands on you","z":"压力","x":"Teenagers are under pressure to look a certain way.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"pressure|Unit 4"},{"w":"realist","p":"","o":"n","e":"a person who accepts situations as they really are","z":"现实主义者","x":"A realist knows that not every goal can be achieved.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"realist|Unit 4"},{"w":"self-expression","p":"","o":"n","e":"expressing your ideas or feelings through art or action","z":"自我表达","x":"Music is an important form of self-expression for teenagers.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"self-expression|Unit 4"},{"w":"active","p":"","o":"adj","e":"doing things regularly rather than sitting still","z":"活跃的","x":"Active people generally live longer than inactive ones.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"active|Unit 4"},{"w":"bored","p":"","o":"adj","e":"feeling tired because nothing interests you","z":"无聊的","x":"Children who are bored often turn to screens.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"bored|Unit 4"},{"w":"dissatisfied","p":"","o":"adj","e":"not happy with something","z":"不满意的","x":"Many employees are dissatisfied with their work-life balance.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"dissatisfied|Unit 4"},{"w":"intense","p":"","o":"adj","e":"very strong or extreme","z":"强烈的","x":"Competitive sport can be intensely stressful.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"intense|Unit 4"},{"w":"materialistic","p":"","o":"adj","e":"caring too much about money and possessions","z":"物质主义的","x":"Modern society is often described as materialistic.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"materialistic|Unit 4"},{"w":"outdoor","p":"","o":"adj","e":"happening or used outside a building","z":"户外的","x":"Outdoor pursuits such as hiking reduce stress.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"outdoor|Unit 4"},{"w":"positive","p":"","o":"adj","e":"hopeful and confident about the future","z":"积极的","x":"A positive outlook is linked to better health.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"positive|Unit 4"},{"w":"recreational","p":"","o":"adj","e":"connected with activities done for enjoyment","z":"娱乐休闲的","x":"The city needs more recreational space for young people.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"recreational|Unit 4"},{"w":"successful","p":"","o":"adj","e":"achieving the results you wanted","z":"成功的","x":"He is successful in his career but rarely sees his family.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"successful|Unit 4"},{"w":"achieve","p":"","o":"v","e":"to succeed in doing something after effort","z":"实现，达到","x":"She achieved her goal of cycling across the country.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"achieve|Unit 4"},{"w":"appeal","p":"","o":"v","e":"to be attractive or interesting to someone","z":"有吸引力","x":"Working from home appeals to many young parents.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"appeal|Unit 4"},{"w":"attract","p":"","o":"v","e":"to make someone interested in something","z":"吸引","x":"The festival attracts thousands of visitors each year.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"attract|Unit 4"},{"w":"express","p":"","o":"v","e":"to show what you think or feel","z":"表达","x":"People express their personality through the clothes they wear.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"express|Unit 4"},{"w":"fulfil","p":"","o":"v","e":"to achieve something you wanted or promised","z":"实现，履行","x":"He fulfilled a lifelong ambition by climbing Kilimanjaro.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"fulfil|Unit 4"},{"w":"improve","p":"","o":"v","e":"to become better or make something better","z":"改善","x":"Learning a language improves your job prospects.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"improve|Unit 4"},{"w":"motivate","p":"","o":"v","e":"to make someone want to do something","z":"激励","x":"Rewards motivate some workers more than money.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"motivate|Unit 4"},{"w":"participate","p":"","o":"v","e":"to take part in an activity","z":"参与","x":"Students who participate in sport cope better with stress.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"participate|Unit 4"},{"w":"regret","p":"","o":"v","e":"to feel sorry about something you did or did not do","z":"后悔","x":"Many retired people regret not travelling when they were young.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"regret|Unit 4"},{"w":"relax","p":"","o":"v","e":"to rest and become calm","z":"放松","x":"Gardening helps her relax after a long day.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"relax|Unit 4"},{"w":"satisfy","p":"","o":"v","e":"to make someone pleased","z":"使满足","x":"A hobby that satisfies your curiosity is worth keeping.","y":"","c":"Unit 4 · Lifestyles","u":"Unit 4","t":"学术","id":"satisfy|Unit 4"},{"w":"assignment","p":"","o":"n","e":"a piece of work given to a student to complete","z":"作业，课题","x":"The essay is the first assignment of the term.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"assignment|Unit 5"},{"w":"attendance","p":"","o":"n","e":"the act of being present at classes or events","z":"出勤","x":"Attendance at seminars is compulsory for first-year students.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"attendance|Unit 5"},{"w":"campus","p":"","o":"n","e":"the land and buildings of a university or college","z":"校园","x":"The new library is on the north side of campus.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"campus|Unit 5"},{"w":"college","p":"","o":"n","e":"an institution where students study after school","z":"学院","x":"She is studying engineering at a technical college.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"college|Unit 5"},{"w":"compulsory","p":"","o":"adj","e":"required by a rule or law","z":"必修的，强制的","x":"Physical education is compulsory in most schools.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"compulsory|Unit 5"},{"w":"controversy","p":"","o":"n","e":"public disagreement about something","z":"争议","x":"The decision to raise tuition fees caused great controversy.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"controversy|Unit 5"},{"w":"curriculum","p":"","o":"n","e":"the subjects taught in a school or university course","z":"课程设置","x":"Coding is now part of the primary curriculum.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"curriculum|Unit 5"},{"w":"deadline","p":"","o":"n","e":"the time by which something must be finished","z":"截止日期","x":"The deadline for the dissertation is the end of May.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"deadline|Unit 5"},{"w":"degree","p":"","o":"n","e":"a qualification given by a university","z":"学位","x":"She has a degree in economics.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"degree|Unit 5"},{"w":"dissertation","p":"","o":"n","e":"a long piece of writing done for a university degree","z":"学位论文","x":"He is writing his dissertation on urban transport.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"dissertation|Unit 5"},{"w":"education","p":"","o":"n","e":"the process of teaching and learning","z":"教育","x":"Education should prepare students for life, not just exams.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"education|Unit 5"},{"w":"enrolment","p":"","o":"n","e":"the act of officially joining a course or school","z":"注册，入学","x":"Enrolment for the autumn term opens in August.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"enrolment|Unit 5"},{"w":"exam","p":"","o":"n","e":"a formal test of knowledge","z":"考试","x":"Students sit four exams at the end of the semester.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"exam|Unit 5"},{"w":"faculty","p":"","o":"n","e":"a department of a university, or its teaching staff","z":"院系；全体教员","x":"The faculty of law is the oldest in the university.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"faculty|Unit 5"},{"w":"field","p":"","o":"n","e":"an area of study or activity","z":"领域","x":"She is a leading researcher in the field of genetics.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"field|Unit 5"},{"w":"findings","p":"","o":"n","e":"the results of a piece of research","z":"研究结果","x":"The findings suggest that sleep improves memory.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"findings|Unit 5"},{"w":"funding","p":"","o":"n","e":"money provided for a particular purpose","z":"经费","x":"The project was delayed because of a lack of funding.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"funding|Unit 5"},{"w":"grade","p":"","o":"n","e":"a mark showing the quality of a student's work","z":"成绩，等级","x":"He needs a high grade in maths to study engineering.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"grade|Unit 5"},{"w":"graduation","p":"","o":"n","e":"the ceremony at which degrees are given","z":"毕业","x":"Her parents flew in for her graduation.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"graduation|Unit 5"},{"w":"grant","p":"","o":"n","e":"money given to support a student or a project","z":"助学金，拨款","x":"She received a grant to study abroad for a year.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"grant|Unit 5"},{"w":"homework","p":"","o":"n","e":"work given by teachers to be done at home","z":"家庭作业","x":"Too much homework leaves little time for sport.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"homework|Unit 5"},{"w":"lecturer","p":"","o":"n","e":"a person who teaches at a university","z":"讲师","x":"The lecturer answered questions after the talk.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"lecturer|Unit 5"},{"w":"library","p":"","o":"n","e":"a place where books are kept for people to read or borrow","z":"图书馆","x":"The library stays open until midnight during exams.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"library|Unit 5"},{"w":"literacy","p":"","o":"n","e":"the ability to read and write","z":"读写能力","x":"Adult literacy programmes have improved rural employment.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"literacy|Unit 5"},{"w":"module","p":"","o":"n","e":"one of the separate units of a course","z":"课程单元","x":"Students choose two optional modules in the second year.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"module|Unit 5"},{"w":"plagiarism","p":"","o":"n","e":"copying someone else's work and pretending it is yours","z":"抄袭","x":"The university treats plagiarism very seriously.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"plagiarism|Unit 5"},{"w":"professor","p":"","o":"n","e":"a senior teacher at a university","z":"教授","x":"The professor has published widely on child development.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"professor|Unit 5"},{"w":"qualification","p":"","o":"n","e":"an exam pass or skill that makes you suitable for a job","z":"资格，学历","x":"A teaching qualification is required for the job.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"qualification|Unit 5"},{"w":"research","p":"","o":"n","e":"careful study to discover new facts","z":"研究","x":"Her research focuses on how children learn to read.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"research|Unit 5"},{"w":"scholarship","p":"","o":"n","e":"money given to a talented student to study","z":"奖学金","x":"He won a scholarship to study in Canada.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"scholarship|Unit 5"},{"w":"seminar","p":"","o":"n","e":"a class in which a small group discusses a subject","z":"研讨课","x":"Students present their reading in the weekly seminar.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"seminar|Unit 5"},{"w":"student loan","p":"","o":"n","e":"money borrowed to pay for study, paid back later","z":"学生贷款","x":"Most graduates leave university with a student loan.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"student loan|Unit 5"},{"w":"subject","p":"","o":"n","e":"an area of knowledge studied at school","z":"科目","x":"History was her favourite subject at school.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"subject|Unit 5"},{"w":"syllabus","p":"","o":"n","e":"the plan of subjects in a course","z":"教学大纲","x":"The syllabus lists the reading for each week.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"syllabus|Unit 5"},{"w":"term","p":"","o":"n","e":"one of the periods into which the academic year is divided","z":"学期","x":"The spring term begins in early January.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"term|Unit 5"},{"w":"thesis","p":"","o":"n","e":"a long piece of writing based on research","z":"论文","x":"His thesis argues that class size affects achievement.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"thesis|Unit 5"},{"w":"tuition","p":"","o":"n","e":"teaching, or the money paid for it","z":"学费；教学","x":"Tuition fees have risen sharply in the last decade.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"tuition|Unit 5"},{"w":"tutorial","p":"","o":"n","e":"a small class in which one teacher works with students","z":"辅导课","x":"We discuss the reading in a tutorial each fortnight.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"tutorial|Unit 5"},{"w":"undergraduate","p":"","o":"n","e":"a student who is studying for a first degree","z":"本科生","x":"Undergraduates make up most of the campus population.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"undergraduate|Unit 5"},{"w":"workload","p":"","o":"n","e":"the amount of work a person has to do","z":"工作量","x":"The workload in the second year is much heavier.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"workload|Unit 5"},{"w":"academic","p":"","o":"adj","e":"relating to study, teaching or research","z":"学术的","x":"Academic writing requires evidence and clear structure.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"academic|Unit 5"},{"w":"theoretical","p":"","o":"adj","e":"based on ideas rather than practical experience","z":"理论的","x":"The course is too theoretical and offers little practice.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"theoretical|Unit 5"},{"w":"practical","p":"","o":"adj","e":"useful and sensible; involving doing rather than ideas","z":"实用的；实践的","x":"The course combines theory with practical work.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"practical|Unit 5"},{"w":"assess","p":"","o":"v","e":"to judge the quality or level of something","z":"评估","x":"Teachers assess students through coursework and exams.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"assess|Unit 5"},{"w":"submit","p":"","o":"v","e":"to give a piece of work to a teacher for marking","z":"提交","x":"You must submit the essay by Friday noon.","y":"","c":"Unit 5 · Student life","u":"Unit 5","t":"学术","id":"submit|Unit 5"},{"w":"accommodation","p":"","o":"n","e":"a place to live, stay or work in","z":"住处","x":"There is a shortage of cheap accommodation in the city.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"accommodation|Unit 7"},{"w":"attraction","p":"","o":"n","e":"something interesting that people want to visit","z":"吸引力，景点","x":"There are many tourist attractions in London.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"attraction|Unit 7"},{"w":"community","p":"","o":"n","e":"the people living in one area, or a group with shared interests","z":"社区","x":"There is a good sense of community where I live.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"community|Unit 7"},{"w":"countryside","p":"","o":"n","e":"land outside towns and cities","z":"乡下，农村","x":"Hiking through the countryside is one of my favourite pastimes.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"countryside|Unit 7"},{"w":"destination","p":"","o":"n","e":"the place someone is going to","z":"目的地","x":"It will take five hours to reach our destination.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"destination|Unit 7"},{"w":"eco-tourism","p":"","o":"n","e":"tourism that helps local people and protects the environment","z":"生态旅游","x":"Eco-tourism is booming in parts of the world of great natural beauty.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"eco-tourism|Unit 7"},{"w":"effect","p":"","o":"n","e":"a change that results from an action or influence","z":"影响，效果","x":"Tourism is having a negative effect on the environment.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"effect|Unit 7"},{"w":"facilities","p":"","o":"n","e":"buildings or equipment provided for a particular activity","z":"设施","x":"The resort has excellent sports facilities.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"facilities|Unit 7"},{"w":"identity","p":"","o":"n","e":"who or what a person is; an official document proving this","z":"身份","x":"I showed my identity card to the immigration staff.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"identity|Unit 7"},{"w":"inhabitant","p":"","o":"n","e":"a person or animal that lives in a particular place","z":"居民","x":"Taipei is a city of millions of inhabitants.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"inhabitant|Unit 7"},{"w":"itinerary","p":"","o":"n","e":"a detailed plan of a journey","z":"行程","x":"Tour groups follow a fixed itinerary each day.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"itinerary|Unit 7"},{"w":"journey","p":"","o":"n","e":"the act of travelling from one place to another","z":"旅程","x":"The journey from the airport takes about an hour.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"journey|Unit 7"},{"w":"landscape","p":"","o":"n","e":"a large area of countryside, especially its appearance","z":"风景，地貌","x":"The train crosses a spectacular mountain landscape.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"landscape|Unit 7"},{"w":"luggage","p":"","o":"n","e":"the bags you take when you travel","z":"行李","x":"They bought new luggage for their trip.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"luggage|Unit 7"},{"w":"peak","p":"","o":"n","e":"the highest point of a mountain or of a period","z":"山顶；高峰","x":"Tourist numbers reach a peak in August.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"peak|Unit 7"},{"w":"tourism","p":"","o":"n","e":"the business of providing services for tourists","z":"旅游业","x":"Many island economies depend on tourism.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"tourism|Unit 7"},{"w":"tourist","p":"","o":"n","e":"a person who travels to visit a place","z":"游客","x":"Tourist sites are crowded during the holidays.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"tourist|Unit 7"},{"w":"transport","p":"","o":"n","e":"a system for carrying people or goods","z":"交通，运输","x":"Public transport in this city is extremely convenient.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"transport|Unit 7"},{"w":"travel","p":"","o":"n","e":"the activity of going from one place to another","z":"旅行","x":"For many young people, travel is a way of discovering yourself.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"travel|Unit 7"},{"w":"trend","p":"","o":"n","e":"a general change in the way people behave","z":"趋势","x":"There is a growing trend towards short city breaks.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"trend|Unit 7"},{"w":"trip","p":"","o":"n","e":"a journey to a place and back, usually short","z":"短途旅行","x":"We went on a three-day trip to the coast.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"trip|Unit 7"},{"w":"village","p":"","o":"n","e":"a small group of houses in the countryside","z":"村庄","x":"This village is a thousand years old.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"village|Unit 7"},{"w":"adventurous","p":"","o":"adj","e":"enjoying new and exciting experiences","z":"爱冒险的","x":"She led an adventurous life, travelling alone for years.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"adventurous|Unit 7"},{"w":"budget","p":"","o":"n","e":"a plan of how much money you can spend","z":"预算","x":"Travellers often make a budget to control their spending.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"budget|Unit 7"},{"w":"breathtaking","p":"","o":"adj","e":"extremely impressive or beautiful","z":"令人惊叹的","x":"The view from the top is absolutely breathtaking.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"breathtaking|Unit 7"},{"w":"coastal","p":"","o":"adj","e":"relating to the coast","z":"沿海的","x":"Coastal villages depend on fishing and tourism.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"coastal|Unit 7"},{"w":"cosmopolitan","p":"","o":"adj","e":"full of people from many different countries","z":"国际化的","x":"London is a cosmopolitan city with hundreds of languages.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"cosmopolitan|Unit 7"},{"w":"diverse","p":"","o":"adj","e":"including many different types of people or things","z":"多样的","x":"Sydney is a culturally diverse place.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"diverse|Unit 7"},{"w":"flexible","p":"","o":"adj","e":"able to change easily to suit a new situation","z":"灵活的","x":"Touring holidays do not have a very flexible itinerary.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"flexible|Unit 7"},{"w":"foreign","p":"","o":"adj","e":"from or relating to another country","z":"外国的","x":"Foreign students bring new ideas to the classroom.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"foreign|Unit 7"},{"w":"local","p":"","o":"adj","e":"relating to the area where you live","z":"当地的","x":"The local market sells produce from nearby farms.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"local|Unit 7"},{"w":"luxurious","p":"","o":"adj","e":"very expensive, beautiful and comfortable","z":"奢华的","x":"They stayed in a luxurious hotel by the sea.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"luxurious|Unit 7"},{"w":"mountainous","p":"","o":"adj","e":"having a lot of mountains","z":"多山的","x":"Central Taiwan is extremely mountainous.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"mountainous|Unit 7"},{"w":"peaceful","p":"","o":"adj","e":"quiet and calm","z":"宁静的","x":"The village is peaceful in winter but crowded in summer.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"peaceful|Unit 7"},{"w":"picturesque","p":"","o":"adj","e":"attractive, like something in a painting","z":"风景如画的","x":"We stayed in a picturesque village by the river.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"picturesque|Unit 7"},{"w":"polluted","p":"","o":"adj","e":"dirty and dangerous because of waste","z":"受污染的","x":"The river is too polluted for swimming.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"polluted|Unit 7"},{"w":"quaint","p":"","o":"adj","e":"attractive in an old-fashioned way","z":"古色古香的","x":"They live in a quaint cottage with a low door.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"quaint|Unit 7"},{"w":"remote","p":"","o":"adj","e":"far away from towns and other people","z":"偏远的","x":"The island is remote and can only be reached by boat.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"remote|Unit 7"},{"w":"rough","p":"","o":"adj","e":"having an uneven surface; not calm","z":"崎岖的；风浪大的","x":"The sea was rough and the ferry was cancelled.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"rough|Unit 7"},{"w":"rural","p":"","o":"adj","e":"relating to the countryside","z":"乡村的","x":"Rural bus services have been cut in recent years.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"rural|Unit 7"},{"w":"scenic","p":"","o":"adj","e":"having beautiful views of the countryside","z":"风景优美的","x":"We took the scenic route along the coast.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"scenic|Unit 7"},{"w":"stunning","p":"","o":"adj","e":"extremely beautiful or impressive","z":"极美的","x":"The hotel has stunning views over the bay.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"stunning|Unit 7"},{"w":"tough","p":"","o":"adj","e":"difficult to do or deal with","z":"艰难的","x":"Driving in the mountains can be tough in winter.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"tough|Unit 7"},{"w":"traditional","p":"","o":"adj","e":"following ideas and customs that have existed a long time","z":"传统的","x":"The festival is still celebrated in a traditional way.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"traditional|Unit 7"},{"w":"unspoilt","p":"","o":"adj","e":"not changed or damaged by human activity","z":"未受破坏的","x":"The island has miles of unspoilt coastline.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"unspoilt|Unit 7"},{"w":"urban","p":"","o":"adj","e":"relating to towns and cities","z":"城市的","x":"Urban populations are growing faster than rural ones.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"urban|Unit 7"},{"w":"affect","p":"","o":"v","e":"to produce a change in something","z":"影响","x":"Tourism affects the daily life of local people.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"affect|Unit 7"},{"w":"fluctuate","p":"","o":"v","e":"to change often in level or amount","z":"波动","x":"Prices fluctuated between forty and sixty dollars.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"fluctuate|Unit 7"},{"w":"prominent","p":"","o":"adj","e":"important and well known","z":"显著的，重要的","x":"She played a prominent role in the campaign.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"prominent|Unit 7"},{"w":"treacherous","p":"","o":"adj","e":"extremely dangerous","z":"危险的","x":"The mountain road is treacherous in the rain.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"treacherous|Unit 7"},{"w":"beforehand","p":"","o":"adv","e":"before something else happens","z":"提前","x":"I always book plane tickets well beforehand.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"beforehand|Unit 7"},{"w":"approximately","p":"","o":"adv","e":"about; nearly","z":"大约","x":"It takes approximately thirty minutes to commute to work.","y":"","c":"Unit 7 · On the move","u":"Unit 7","t":"学术","id":"approximately|Unit 7"}];
+const CONF={};
+const NEAR={};
+const PASS=[{"ti":"The family we grow up in","u":"Unit 1","seg":[{"t":"In the past, most children grew up in a "},{"t":"close-knit","id":"close-knit|Unit 1"},{"t":" family, with grandparents, aunts and cousins living nearby. The "},{"t":"bond","id":"bond|Unit 1"},{"t":" between them was strong, and the "},{"t":"upbringing","id":"upbringing|Unit 1"},{"t":" a child received in the first years shaped everything that followed. A "},{"t":"sibling","id":"sibling|Unit 1"},{"t":" can be a friend and a rival at the same time, and a certain amount of "},{"t":"rivalry","id":"rivalry|Unit 1"},{"t":" is normal. In "},{"t":"adolescence","id":"adolescence|Unit 1"},{"t":", young people often come into "},{"t":"conflict","id":"conflict|Unit 1"},{"t":" with their parents as they search for independence, but the "},{"t":"relationship","id":"relationship|Unit 1"},{"t":" usually grows closer again in "},{"t":"adulthood","id":"adulthood|Unit 1"},{"t":". Researchers still argue about how much of our "},{"t":"temperament","id":"temperament|Unit 1"},{"t":" we "},{"t":"inherit","id":"inherit|Unit 1"},{"t":", and how much we learn from those around us. What is certain is that a "},{"t":"stable","id":"stable|Unit 1"},{"t":" home matters more than money."}]},{"ti":"From first words to a grown-up mind","u":"Unit 2","seg":[{"t":"Nothing changes faster than a baby. The "},{"t":"growth","id":"growth|Unit 2"},{"t":" that takes place in the first two years is astonishing. In "},{"t":"infancy","id":"infancy|Unit 2"},{"t":", an "},{"t":"infant","id":"infant|Unit 2"},{"t":" already recognises a parent's voice, and by the "},{"t":"toddler","id":"toddler|Unit 2"},{"t":" stage most children are walking. Every new "},{"t":"milestone","id":"milestone|Unit 2"},{"t":" — a first word, a first step — is celebrated. Children "},{"t":"acquire","id":"acquire|Unit 2"},{"t":" language without formal teaching: they listen, "},{"t":"imitate","id":"imitate|Unit 2"},{"t":" and slowly "},{"t":"master","id":"master|Unit 2"},{"t":" the sounds around them. "},{"t":"cognitive","id":"cognitive|Unit 2"},{"t":" development depends on both genes and experience, and a child's "},{"t":"memory","id":"memory|Unit 2"},{"t":" improves steadily with age. Some ideas, such as time, are too "},{"t":"abstract","id":"abstract|Unit 2"},{"t":" for a young child's "},{"t":"mind","id":"mind|Unit 2"},{"t":"."}]},{"ti":"No quick fix","u":"Unit 3","seg":[{"t":"Governments keep telling us to eat less and move more, yet "},{"t":"obesity","id":"obesity|Unit 3"},{"t":" continues to rise. One "},{"t":"factor","id":"factor|Unit 3"},{"t":" is the size of the "},{"t":"portion","id":"portion|Unit 3"},{"t":" served in restaurants; another is the amount of "},{"t":"fat","id":"fat|Unit 3"},{"t":" and sugar hidden in processed food. A poor "},{"t":"diet","id":"diet|Unit 3"},{"t":" raises the "},{"t":"risk","id":"risk|Unit 3"},{"t":" of heart disease and "},{"t":"stroke","id":"stroke|Unit 3"},{"t":". Doctors recommend "},{"t":"moderate","id":"moderate|Unit 3"},{"t":" exercise — a "},{"t":"brisk","id":"brisk|Unit 3"},{"t":" walk is enough — and ask patients to cut their salt "},{"t":"intake","id":"intake|Unit 3"},{"t":". There is no magic "},{"t":"cure","id":"cure|Unit 3"},{"t":", but small daily changes "},{"t":"prevent","id":"prevent|Unit 3"},{"t":" most cases."}]},{"ti":"Time, money and what matters","u":"Unit 4","seg":[{"t":"Ask people what makes a good "},{"t":"lifestyle","id":"lifestyle|Unit 4"},{"t":" and the answers are surprisingly similar: health, time with family, and work that brings a sense of "},{"t":"fulfilment","id":"fulfilment|Unit 4"},{"t":". Yet many employees say they are under "},{"t":"pressure","id":"pressure|Unit 4"},{"t":" to work long hours, and that "},{"t":"leisure","id":"leisure|Unit 4"},{"t":" is the first thing they give up. An "},{"t":"optimist","id":"optimist|Unit 4"},{"t":" believes a positive "},{"t":"outlook","id":"outlook|Unit 4"},{"t":" protects them from stress; a "},{"t":"pessimist","id":"pessimist|Unit 4"},{"t":" expects the opposite. Psychologists suggest setting one clear "},{"t":"goal","id":"goal|Unit 4"},{"t":" at a time, keeping a "},{"t":"hobby","id":"hobby|Unit 4"},{"t":" that allows "},{"t":"self-expression","id":"self-expression|Unit 4"},{"t":", and remembering that money is only one "},{"t":"aspect","id":"aspect|Unit 4"},{"t":" of a good life."}]},{"ti":"The first term at university","u":"Unit 5","seg":[{"t":"Every new "},{"t":"undergraduate","id":"undergraduate|Unit 5"},{"t":" discovers quickly that university is not like school. The "},{"t":"workload","id":"workload|Unit 5"},{"t":" is heavier, the "},{"t":"syllabus","id":"syllabus|Unit 5"},{"t":" is longer, and nobody reminds you of a "},{"t":"deadline","id":"deadline|Unit 5"},{"t":". "},{"t":"attendance","id":"attendance|Unit 5"},{"t":" at every "},{"t":"seminar","id":"seminar|Unit 5"},{"t":" is "},{"t":"compulsory","id":"compulsory|Unit 5"},{"t":", and teachers "},{"t":"assess","id":"assess|Unit 5"},{"t":" each "},{"t":"module","id":"module|Unit 5"},{"t":" through coursework as well as a final "},{"t":"exam","id":"exam|Unit 5"},{"t":". Copying from a website is "},{"t":"plagiarism","id":"plagiarism|Unit 5"},{"t":" and is punished severely. Students who plan their week and use the "},{"t":"library","id":"library|Unit 5"},{"t":" usually cope best."}]},{"ti":"Too many visitors","u":"Unit 7","seg":[{"t":"Tourism is now one of the world's largest industries, and for many a "},{"t":"rural","id":"rural|Unit 7"},{"t":" "},{"t":"community","id":"community|Unit 7"},{"t":" it is the main source of income. A "},{"t":"remote","id":"remote|Unit 7"},{"t":" "},{"t":"village","id":"village|Unit 7"},{"t":" that was once "},{"t":"peaceful","id":"peaceful|Unit 7"},{"t":" may now see a coach party every morning, and a single "},{"t":"tourist","id":"tourist|Unit 7"},{"t":" can spend more in a week than a farmer earns in a month. The "},{"t":"effect","id":"effect|Unit 7"},{"t":" is not always good: "},{"t":"local","id":"local|Unit 7"},{"t":" people lose the "},{"t":"unspoilt","id":"unspoilt|Unit 7"},{"t":" "},{"t":"landscape","id":"landscape|Unit 7"},{"t":" they grew up in, and prices rise. "},{"t":"eco-tourism","id":"eco-tourism|Unit 7"},{"t":" was meant to solve this, but even well-run projects need careful planning. Every "},{"t":"journey","id":"journey|Unit 7"},{"t":" changes the place it reaches."}]}];
+
+const KEY='vocab.quiz.u12.v1';
+const PREFS='vocab.quiz.prefs.v1';
+const SET=10;
+const PTS={IA:1.5,IB:1.5,IC:1.5,IIA:1.5};
+const TYPES=[
+  {k:'IC',  code:'A', nm:'给释义选单词', ds:'6 题 · 四选一 A–D · 每题 1.5 分'},
+  {k:'IA',  code:'B', nm:'选词填句 · 填字母', ds:'10 题（考卷 8 题）· 共享词库 15 词 · 每题 1.5 分'},
+  {k:'IIA', code:'C', nm:'完形选词 · 填字母', ds:'一篇短文 10 空（考卷 6 空）· 15 词库 · 每题 1.5 分'},
+  {k:'IB',  code:'D', nm:'单词配释义（反向）', ds:'10 句 · A–J 十个定义一一对应 · 每题 1.5 分'}
+];
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const letter=i=>String.fromCharCode(65+i);
+
+DATA.forEach(d=>{
+  if(d.e) d.e=String(d.e).replace(/[\u200b\u200e\u200f\ufeff]/g,'').replace(/\s+/g,' ').trim();
+  if(d.x) d.x=String(d.x).replace(/[\u200b\u200e\u200f\ufeff]/g,'').trim();
+  if(d.w) d.w=String(d.w).trim();
+});
+const byId={}; DATA.forEach(d=>byId[d.id]=d);
+const byWord={}; DATA.forEach(d=>byWord[d.w.toLowerCase()]=d);
+
+/* ---------- 存储 ---------- */
+function blankStore(){ return {v:2,cards:{},stat:{a:0,r:0}}; }
+/* 存储三级降级：localStorage → sessionStorage → 内存
+   微信内置预览、部分 file:// 打开方式会禁掉 localStorage，此时不至于崩，也不至于静默丢数据 */
+const MEM={};
+const STORE_MODE=(function(){
+  const probe=w=>{ try{ const k='__p__'; w.setItem(k,'1'); const v=w.getItem(k); w.removeItem(k); return v==='1'; }catch(e){ return false; } };
+  try{ if(probe(localStorage)) return 'local'; }catch(e){}
+  try{ if(probe(sessionStorage)) return 'session'; }catch(e){}
+  return 'memory';
+})();
+const PERSIST_OK = STORE_MODE==='local';
+const IN_WECHAT = /MicroMessenger|QQ\//i.test(navigator.userAgent||'');
+
+function rawGet(){
+  try{
+    if(STORE_MODE==='local') return localStorage.getItem(KEY);
+    if(STORE_MODE==='session') return sessionStorage.getItem(KEY);
+  }catch(e){}
+  return MEM[KEY]||null;
+}
+function rawSet(v){
+  try{
+    if(STORE_MODE==='local'){ localStorage.setItem(KEY,v); return; }
+    if(STORE_MODE==='session'){ sessionStorage.setItem(KEY,v); return; }
+  }catch(e){}
+  MEM[KEY]=v;
+}
+
+let store=(function(){
+  try{ const o=JSON.parse(rawGet()); if(o&&o.cards) return o; }catch(e){}
+  return blankStore();
+})();
+function save(){ try{ rawSet(JSON.stringify(store)); }catch(e){} }
+
+function cardOf(d){ if(!store.cards[d.id]) store.cards[d.id]={w:0,r:0,t:0}; return store.cards[d.id]; }
+function rec(d,good){ const c=cardOf(d); if(good) c.r++; else c.w++; c.l=good?1:0; c.t=Date.now();
+  store.stat.a++; if(good) store.stat.r++; save(); }
+const mastered=d=>{ const c=store.cards[d.id]; return !!c && c.l===1; };
+const wrongList=()=>DATA.filter(d=>{ const c=store.cards[d.id]; return c && c.w>0 && c.l!==1; });
+
+let prefs={type:'IA',scope:'all'};
+try{ const p=JSON.parse(localStorage.getItem(PREFS)); if(p&&p.type) prefs=Object.assign(prefs,p); }catch(e){}
+function savePrefs(){ try{ localStorage.setItem(PREFS,JSON.stringify(prefs)); }catch(e){} }
+
+/* ---------- 定位单词在句中的位置 ---------- */
+function locate(sentence, word){
+  const s=String(sentence||'').replace(/\b([A-Za-z]+)\/([A-Za-z]+)\b/g,'$1');
+  const lw=String(word).toLowerCase().trim();
+  const ec=c=>c.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  if(lw.indexOf(' ')>0){
+    const parts=word.split(/\s+/).map(p=>ec(p));
+    let m=s.match(new RegExp('\\b'+parts.join('\\s+')+'\\b','i'));
+    if(m) return {s,i:m.index,j:m.index+m[0].length};
+    const head=(word.split(/\s+/).filter(p=>!/^(be|a|an|to|the)$/i.test(p))[0]||word.split(/\s+/)[0]);
+    const tail=word.split(/\s+/).pop();
+    m=s.match(new RegExp('\\b'+ec(head.slice(0,4))+'[A-Za-z]*\\s+(?:[A-Za-z]+\\s+)?'+ec(tail.slice(0,Math.max(4,tail.length-2)))+'[A-Za-z]*','i'));
+    return m?{s,i:m.index,j:m.index+m[0].length}:null;
+  }
+  const need=lw.length<=4?lw.length:lw.length-3;
+  const re=/[A-Za-z][A-Za-z'-]*/g;
+  let m,best=null,bestN=0;
+  while((m=re.exec(s))){
+    const t=m[0].toLowerCase();
+    let n=0; while(n<lw.length&&n<t.length&&lw[n]===t[n]) n++;
+    if(n>=need&&n>bestN){ best=m; bestN=n; }
+  }
+  return best?{s,i:best.index,j:best.index+best[0].length}:null;
+}
+const defOk=e=>!!e && String(e).length<=110;
+const toks=e=>new Set(String(e||'').toLowerCase().match(/[a-z]{3,}/g)||[]);
+function jac(a,b){
+  const A=toks(a),B=toks(b); if(!A.size||!B.size) return 0;
+  let x=0; A.forEach(t=>{ if(B.has(t)) x++; });
+  return x/(A.size+B.size-x);
+}
+
+/* ---------- 组题 ---------- */
+function sample(a,n){ return shuffle(a.slice()).slice(0,n); }
+function uniqByWord(a){
+  const seen=new Set(), out=[];
+  a.forEach(x=>{ if(!seen.has(x.w)){ seen.add(x.w); out.push(x); } });
+  return out;
+}
+
+// 范围里词不够 10 个时：先在同一单元里补，再退回全书
+function topUp(pick,n,ok){
+  if(n<=0) return [];
+  const have=new Set(pick.map(d=>d.id));
+  const su=scopeUnitOf(pick);
+  const tiers=su?[DATA.filter(d=>d.u===su),DATA]:[DATA];
+  const out=[];
+  for(const t of tiers){
+    if(out.length>=n) break;
+    const rest=uniqByWord(t.filter(d=>ok(d)&&!have.has(d.id)&&!out.some(o=>o.id===d.id)));
+    out.push(...sample(rest,n-out.length));
+  }
+  return out;
+}
+
+// I·A：10 空 + 15 词库
+function buildIA(scope){
+  const ok=d=>d.x&&locate(d.x,d.w);
+  const cand=scope.filter(ok);
+  let pick=sample(cand,SET);
+  if(pick.length<SET) pick=pick.concat(topUp(pick,SET-pick.length,ok));
+  const items=pick.map(d=>{
+    const L=locate(d.x,d.w);
+    return {kind:'IA',d,pre:L.s.slice(0,L.i),post:L.s.slice(L.j),ans:d.w};
+  });
+  const answers=new Set(items.map(i=>i.ans));
+  const extra=bankDistractors(items.map(i=>i.d),answers,5);
+  return {kind:'IA',items,bank:shuffle([...answers].map(w=>({w})).concat(extra))};
+}
+
+function bankDistractors(answersD,answersSet,n){
+  const cands=[];
+  answersD.forEach(d=>{ (NEAR[d.id]||[]).forEach(id=>{ const x=byId[id]; if(x&&!answersSet.has(x.w)) cands.push(x); }); });
+  let out=uniqByWord(cands).filter(x=>!answersSet.has(x.w));
+  if(out.length<n){
+    const pos=new Set(answersD.map(d=>d.o));
+    const more=DATA.filter(x=>pos.has(x.o)&&!answersSet.has(x.w)&&!out.some(o=>o.w===x.w));
+    out=out.concat(sample(more,n-out.length));
+  }
+  return sample(out,n).map(x=>({w:x.w}));
+}
+
+// I·B：10 句划线词 + A–J 定义
+function buildIB(scope){
+  const ok=d=>defOk(d.e)&&d.x&&locate(d.x,d.w);
+  let cand=scope.filter(ok);
+  if(cand.length<SET) cand=cand.concat(topUp(cand,SET-cand.length,ok));
+  const picked=[];
+  for(const d of sample(cand,cand.length)){
+    if(picked.length>=SET) break;
+    if(picked.some(p=>jac(p.e,d.e)>0.28)) continue;
+    picked.push(d);
+  }
+  const defs=shuffle(picked.map(d=>d.e));
+  const items=picked.map(d=>{
+    const L=locate(d.x,d.w);
+    return {kind:'IB',d,pre:L.s.slice(0,L.i),mid:L.s.slice(L.i,L.j),post:L.s.slice(L.j),
+      ans:letter(defs.indexOf(d.e))};
+  });
+  return {kind:'IB',items,defs};
+}
+
+// A 部分：给释义选单词（四选一）
+function buildIC(scope){
+  const ok=d=>defOk(d.e);
+  let cand=scope.filter(ok);
+  if(cand.length<6) cand=cand.concat(topUp(cand,6-cand.length,ok));
+  const pick=sample(cand,6);
+  const items=pick.map(d=>{
+    const opts=[d.w];
+    for(const x of shuffle(DATA.filter(x=>x.o===d.o&&x.w!==d.w))){
+      if(opts.length>=4) break;
+      if(opts.indexOf(x.w)<0) opts.push(x.w);
+    }
+    for(const x of shuffle(DATA)){
+      if(opts.length>=4) break;
+      if(opts.indexOf(x.w)<0) opts.push(x.w);
+    }
+    const bag=shuffle(opts.slice(0,4));
+    return {kind:'IC',d,opts:bag,ans:bag.indexOf(d.w)};
+  });
+  return {kind:'IC',items};
+}
+
+// II·A：短文 10 空 + 15 词库
+function buildIIA(scope){
+  const scopeIds=new Set(scope.map(d=>d.id));
+  const full=scopeIds.size>=DATA.length;
+  // 只有命中所选范围的短文才可选，避免选 Unit 3 却出 Unit 1 的词
+  const scored=PASS.map(p=>{
+    const idx=p.seg.map((s,i)=>s.id?i:-1).filter(i=>i>=0);
+    return {p, idx, hit:idx.filter(i=>scopeIds.has(p.seg[i].id)).length};
+  });
+  let cand=scored;
+  if(!full){
+    cand=scored.filter(s=>s.hit>0);
+    if(!cand.length) cand=scored;                 // 范围里没有任何短文词时才兜底
+  }
+  const pick=cand[Math.floor(Math.random()*cand.length)];
+  const p=pick.p;
+  let inScope=pick.idx.filter(i=>scopeIds.has(p.seg[i].id));
+  if(!inScope.length) inScope=pick.idx.slice();
+  // 短文里属于本范围的词不足 10 个时，先用同单元的补
+  let slots=inScope.slice();
+  if(slots.length<SET){
+    const rest=pick.idx.filter(i=>slots.indexOf(i)<0);
+    const su=scopeUnitOf(scope);
+    const same=su?rest.filter(i=>{ const d=byId[p.seg[i].id]; return d&&d.u===su; }):[];
+    slots=slots.concat(same);
+    if(slots.length<SET) slots=slots.concat(rest.filter(i=>slots.indexOf(i)<0));
+  }
+  const n=Math.min(SET,slots.length);
+  const chosen=sample(slots,n).sort((a,b)=>a-b);
+  const items=chosen.map(i=>{
+    const d=byId[p.seg[i].id];
+    return {kind:'IIA',d,slot:i,ans:d.w};
+  });
+  const answers=new Set(items.map(i=>i.ans));
+  const extra=bankDistractors(items.map(i=>i.d),answers,5);
+  return {kind:'IIA',items,pass:p,slotOf:{},bank:shuffle([...answers].map(w=>({w})).concat(extra))};
+}
+
+/* ---------- 状态 ---------- */
+let set=null, cursor=0, answered=[], score=0, wrongD=[];
+const build={
+  IA:buildIA, IB:buildIB, IC:buildIC, IIA:buildIIA
+};
+
+/* ---------- 范围：单元 → 课文 两级 ---------- */
+const unitNo=u=>parseInt((String(u).match(/\d+/)||[0])[0],10)||0;
+const chKey=c=>{ const m=String(c).match(/Ch\s*(\d+)\s*R\s*(\d+)/i); return m?(+m[1])*100+(+m[2]):0; };
+const unitsAll=()=>[...new Set(DATA.map(d=>d.u))].sort((a,b)=>unitNo(a)-unitNo(b));
+const chaptersOf=u=>[...new Set(DATA.filter(d=>d.u===u).map(d=>d.c))].sort((a,b)=>chKey(a)-chKey(b));
+const chUnit=c=>{ const d=DATA.find(x=>x.c===c); return d?d.u:null; };
+const countU=u=>DATA.filter(d=>d.u===u).length;
+const countC=c=>DATA.filter(d=>d.c===c).length;
+// 某篇课文在短文（II·A 用）里被用到的词数，取覆盖最多的那篇
+const passHits=c=>{ let m=0; PASS.forEach(p=>{ const n=p.seg.filter(s=>s.id&&s.id.split('|')[1]===c).length; if(n>m) m=n; }); return m; };
+
+function activeUnit(){
+  const s=prefs.scope||'all';
+  if(s.indexOf('u:')===0) return s.slice(2);
+  if(s.indexOf('ch:')===0) return chUnit(s.slice(3));
+  return null;
+}
+function scopeUnitOf(arr){
+  const us=[...new Set(arr.map(d=>d.u))];
+  return us.length===1?us[0]:null;
+}
+
+function pool(){
+  const s=prefs.scope||'all';
+  if(s==='all') return DATA;
+  if(s==='unmastered') return DATA.filter(d=>!mastered(d));
+  if(s.indexOf('u:')===0) return DATA.filter(d=>d.u===s.slice(2));
+  if(s.indexOf('tag:')===0) return DATA.filter(d=>d.t===s.slice(4));
+  if(s.indexOf('ch:')===0) return DATA.filter(d=>d.c===s.slice(3));
+  return DATA;
+}
+
+/* ---------- 首页 ---------- */
+function renderHome(){
+  $('sDone').textContent=store.stat.a||0;
+  $('sOk').textContent=DATA.filter(mastered).length;
+  $('sWrong').textContent=wrongList().length;
+
+  $('typeList').innerHTML=TYPES.map(t=>
+    `<button class="type${prefs.type===t.k?' on':''}" data-k="${t.k}">
+      <span class="code">${t.code}</span>
+      <span class="tx"><span class="nm">${t.nm}</span><span class="ds">${t.ds}</span></span>
+    </button>`).join('');
+
+  const au=null;  /* 本书按单元或整本，不做课文细分 */
+  const top=[['all','全部',DATA.length]]
+    .concat(unitsAll().map(u=>['u:'+u,u,countU(u)]))
+    .concat([['unmastered','没掌握',DATA.filter(d=>!mastered(d)).length]]);
+  $('scopeChips').innerHTML=top.map(([v,n,c])=>{
+    const cls=prefs.scope===v?' on':(v.indexOf('u:')===0&&au===v.slice(2)?' parent':'');
+    return `<button class="chip sm${cls}" data-s="${v}">${n}<span class="n">${c}</span></button>`;
+  }).join('');
+
+  if(au){
+    $('chapLab').hidden=false; $('scopeSub').hidden=false;
+    $('chapTitle').textContent='② 课文 · '+au;
+    const subs=[['u:'+au,'整个单元',countU(au)]]
+      .concat(chaptersOf(au).map(c=>['ch:'+c,c,countC(c)]));
+    $('scopeSub').innerHTML=subs.map(([v,n,c])=>
+      `<button class="chip sm${prefs.scope===v?' on':''}" data-s="${v}">${n}<span class="n">${c}</span></button>`).join('');
+  }else{
+    $('chapLab').hidden=true; $('scopeSub').hidden=true; $('scopeSub').innerHTML='';
+  }
+
+  const p=pool(), su=scopeUnitOf(p);
+  let note='';
+  if(prefs.type==='IIA' && (prefs.scope||'').indexOf('ch:')===0 && passHits(prefs.scope.slice(3))<5)
+    note=' · 该课文无配文，II·A 用同单元短文';
+  $('poolN').textContent='本组范围 '+p.length+' 词'+
+    (p.length<SET?'（不足 '+SET+'，从'+(su?'同单元':'全书')+'补足）':'')+note;
+}
+
+/* ---------- 开始 ---------- */
+function startSet(list, type){
+  const t=type||prefs.type;
+  const sc=list||pool();
+  if(sc.length<3) toast('范围里的词太少，先选大一点的范围');
+  set=build[t](sc);
+  if(!set.items.length){ toast('这个范围出不了题，换一个范围'); return; }
+  cursor=0; answered=set.items.map(()=>false); score=0; wrongD=[]; usedDefs=new Set();
+  $('qtype').textContent=TYPES.find(x=>x.k===t).code+' · '+TYPES.find(x=>x.k===t).nm;
+  $('prog').style.width='0%';
+  show('quiz');
+  renderItem();
+}
+
+/* ---------- 渲染当前题 ---------- */
+function renderItem(){
+  const it=set.items[cursor];
+  $('cnt').textContent=(cursor+1)+' / '+set.items.length;
+  $('score').textContent='得分 '+(+score.toFixed(1));
+  $('prog').style.width=(cursor/set.items.length*100)+'%';
+  const box=$('qbody');
+
+  if(it.kind==='IA'){
+    box.innerHTML=`
+      <div class="stem"><div class="ln">第 ${slotNo()} 空 · 从词库中选词填入</div>
+        ${esc(it.pre)}<span class="blank cur" id="blank">${answered[cursor]?'':''}</span>${esc(it.post)}</div>
+      <div class="bank"><div class="btitle"><span>词库 ${set.bank.length} 词（含干扰词）</span><span>已用 <b id="usedN">0</b></span></div>
+        <div class="bgrid" id="bgrid">${bankHTML()}</div></div>`;
+  }else if(it.kind==='IIA'){
+    const filled=slotFilled();
+    box.innerHTML=`
+      <div class="passage" id="passage">${passageHTML()}</div>
+      <div class="bank"><div class="btitle"><span>词库 ${set.bank.length} 词（含干扰词）</span><span>已用 <b id="usedN">0</b></span></div>
+        <div class="bgrid" id="bgrid">${bankHTML()}</div></div>`;
+    const cur=$('passage').querySelector('.blank.cur');
+  }else if(it.kind==='IB'){
+    box.innerHTML=`
+      <div class="stem"><div class="ln">划线词的意思是</div>
+        ${esc(it.pre)}<span class="big ul">${esc(it.mid)}</span>${esc(it.post)}</div>
+      <div class="deflist" id="dl">${set.defs.map((d,i)=>
+        `<button class="drow${usedDefs.has(letter(i))?' used':''}" data-l="${letter(i)}">
+          <span class="L">${letter(i)}</span><span>${esc(d)}</span></button>`).join('')}</div>`;
+  }else{
+    box.innerHTML=`
+      <div class="stem"><div class="ln">根据释义选出正确的单词</div>
+        <span class="big">${esc(it.d.e)}</span></div>
+      <div class="opts" id="opts">${it.opts.map((o,i)=>
+        `<button class="opt" data-i="${i}"><span class="i">${letter(i)}</span><span>${esc(o)}</span></button>`).join('')}</div>`;
+  }
+
+  if(it.kind==='IA'||it.kind==='IIA'){
+    const n=[...set.bank].filter(b=>b.used).length;
+    const u=$('usedN'); if(u) u.textContent=n;
+  }
+}
+
+let usedDefs=new Set();
+function slotNo(){ return cursor+1; }
+
+function bankHTML(){
+  return set.bank.map((b,i)=>
+    `<button class="bw${b.used?' used':''}${b.ok?' ok':''}${b.no?' no':''}" data-i="${i}">${esc(b.w)}</button>`
+  ).join('');
+}
+
+function passageHTML(){
+  const p=set.pass;
+  const map={}; set.items.forEach((it,k)=>{ map[it.slot]={k,it}; });
+  let html='', cur=set.items[cursor];
+  p.seg.forEach((s,i)=>{
+    if(!s.id){ html+=esc(s.t); return; }
+    const m=map[i];
+    if(!m){ html+=esc(s.t); return; }
+    const it=m.it, done=answered[m.k];
+    const cls='blank'+(m.k===cursor?' cur':'')+(done?(it._good?' ok':(it._picked?' no':'')):'');
+    const txt=done&&it._picked?esc(it._picked):'';
+    html+=`<span class="${cls}">${txt||'&nbsp;'}</span><span class="bn">(${m.k+1})</span>`;
+  });
+  return html;
+}
+
+function slotFilled(){
+  return set.items.map(it=>it._picked||'').filter(Boolean);
+}
+
+/* ---------- 作答 ---------- */
+function bindQuiz(){
+  $('qbody').addEventListener('click',e=>{
+    const bw=e.target.closest('.bw');
+    if(bw){ pickWord(+bw.dataset.i); return; }
+    const dr=e.target.closest('.drow');
+    if(dr){ pickDef(dr.dataset.l); return; }
+    const op=e.target.closest('.opt');
+    if(op){ pickOpt(+op.dataset.i); return; }
+  });
+}
+
+function pickWord(idx){
+  if(answered[cursor]) return;
+  const b=set.bank[idx];
+  if(!b||b.used) return;
+  const it=set.items[cursor];
+  const good=b.w===it.ans;
+  answered[cursor]=true;
+  b.used=true; b.ok=good; if(!good) b.no=false;
+  if(!good){ /* 干扰词或错词：标红但归还 */ b.used=false; b.no=true; }
+  it._picked=b.w; it._good=good;
+
+  // 空格立即回填
+  if(it.kind==='IA'){ const bl=$('blank'); if(bl){ bl.textContent=b.w; bl.classList.add(good?'ok':'no'); bl.classList.remove('cur'); } }
+  if(it.kind==='IIA'){ const p=$('passage'); if(p) p.innerHTML=passageHTML(); }
+
+  if(good){ score+=PTS[it.kind]; }
+  else { wrongD.push(it.d); }
+
+  // 答错时把正确词标绿
+  if(!good){ const c=set.bank.find(x=>x.w===it.ans); if(c) c.ok=true; }
+  rec(it.d,good);
+  reveal(it,good);
+}
+
+function pickDef(L){
+  if(answered[cursor]) return;
+  const it=set.items[cursor];
+  const good=L===it.ans;
+  answered[cursor]=true; it._picked=L; it._good=good;
+  if(good) score+=PTS[it.kind]; else wrongD.push(it.d);
+  if(good) usedDefs.add(L);
+  const rows=$('dl');
+  if(rows){
+    [...rows.children].forEach(r=>{
+      if(r.dataset.l===L) r.classList.add(good?'ok':'no');
+      if(!good&&r.dataset.l===it.ans) r.classList.add('ok');
+      if(r.dataset.l===it.ans) r.classList.add('used');
+    });
+  }
+  rec(it.d,good);
+  reveal(it,good);
+}
+
+function pickOpt(i){
+  if(answered[cursor]) return;
+  const it=set.items[cursor];
+  const good=i===it.ans;
+  answered[cursor]=true; it._picked=i; it._good=good;
+  if(good) score+=PTS[it.kind]; else wrongD.push(it.d);
+  const box=$('opts');
+  if(box) [...box.children].forEach((b,k)=>{
+    if(k===i) b.classList.add(good?'ok':'no');
+    if(!good&&k===it.ans) b.classList.add('ok');
+  });
+  rec(it.d,good);
+  reveal(it,good);
+}
+
+/* ---------- 反馈弹层 ---------- */
+function reveal(it,good){
+  const d=it.d;
+  const head=good?'<span class="verd ok">✓ 答对了</span>':'<span class="verd no">✕ 答错了</span>';
+  let ansLine='';
+  if(it.kind==='IB') ansLine=`<div class="def" style="margin:0 0 6px">正确项 <b>${it.ans}</b>：${esc(d.e)}</div>`;
+  if(it.kind==='IC') ansLine=`<div class="def" style="margin:0 0 6px">正确项 <b>${letter(it.ans)}</b></div>`;
+
+  const wrap=document.createElement('div');
+  wrap.className='sheet-wrap';
+  wrap.innerHTML=`<div class="sheet">
+    ${head}
+    ${ansLine}
+    <div class="wline"><span class="w">${esc(d.w)}</span>
+      <span class="ipa">${d.p?'/'+esc(d.p)+'/':''}</span>
+      <button class="spk" data-say="${esc(d.w)}">🔊</button>
+      <span class="ipa">${esc(d.o)}</span></div>
+    <div class="zh">${esc(d.z)}</div>
+    ${defOk(d.e)?`<div class="def">${esc(d.e)}</div>`:''}
+    <div class="ex"><div class="en">${esc(d.x)}</div><div class="cn">${esc(d.y)}</div></div>
+    <div class="acts"><button class="btn btn-main" id="btnNext">${cursor===set.items.length-1?'看结果':'下一题'}</button></div>
+  </div>`;
+  document.body.appendChild(wrap);
+  $('score').textContent='得分 '+(+score.toFixed(1));
+  $('prog').style.width=((cursor+1)/set.items.length*100)+'%';
+
+  wrap.addEventListener('click',e=>{
+    if(e.target.closest('[data-say]')){ say(e.target.closest('[data-say]').dataset.say); return; }
+    if(e.target.closest('#btnNext')){ wrap.remove(); advance(); return; }
+  });
+  if(good&&prefs.autoSay) say(d.w);
+}
+
+function say(t){
+  try{
+    const u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=.95;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+function advance(){
+  if(cursor===set.items.length-1){ finish(); return; }
+  cursor++; renderItem();
+}
+
+/* ---------- 结果 ---------- */
+function finish(){
+  const full=+(set.items.length*PTS[set.kind]).toFixed(1);
+  $('donePts').textContent=(+score.toFixed(1));
+  $('doneFull').textContent=' / '+full;
+  const right=set.items.length-wrongD.length;
+  $('doneSub').textContent=`答对 ${right} / ${set.items.length} 题　正确率 ${Math.round(right/set.items.length*100)}%`;
+  $('doneWrong').innerHTML=wrongD.length
+    ? `<div class="lab"><span>这组答错的词</span><i>${wrongD.length}</i></div>
+       <div class="rows">${wrongD.map(d=>`<div class="row"><span class="w">${esc(d.w)}</span><span class="z">${esc(d.z)}</span></div>`).join('')}</div>`
+    : `<div class="empty"><b>全对</b>这一组没有答错的词</div>`;
+  $('btnRetryWrong').hidden=!wrongD.length;
+  show('done');
+  renderHome();
+}
+
+/* ---------- 视图切换 ---------- */
+function show(v){
+  ['home','quiz','done','wrong','add'].forEach(k=>{ $('v-'+k).hidden=(k!==v); });
+  $('btnBack').hidden=(v==='home');
+  $('title').textContent={home:'大学英语 1 · 词汇',quiz:'答题',done:'本组结果',wrong:'错题本',add:'手动加词'}[v];
+  $('subline').hidden=(v!=='home');
+  try{ window.scrollTo(0,0); }catch(e){}
+}
+
+/* ---------- 错题本 ---------- */
+function renderWrong(){
+  const list=wrongList();
+  $('wbN').textContent=list.length+' 词 · 答对自动移出';
+  $('wbList').innerHTML=list.length
+    ? `<div class="rows">${list.map(d=>{
+        const c=store.cards[d.id];
+        return `<div class="row"><span class="w">${esc(d.w)}</span><span class="z">${esc(d.z)}</span><span class="n">错 ${c.w}</span></div>`;
+      }).join('')}</div>`
+    : `<div class="empty"><b>错题本是空的</b>做几组题，答错的词会自动收进来<br>同一个词再答对一次就移出</div>`;
+  $('btnPracticeWrong').disabled=!list.length;
+  $('btnPracticeWrong').style.opacity=list.length?1:.45;
+}
+
+/* ---------- 事件 ---------- */
+$('btnStart').onclick=()=>startSet();
+$('btnBack').onclick=()=>{ if(!$('v-quiz').hidden&&set&&!confirm('退出这一组？本组进度不保留')) return; show('home'); renderHome(); };
+$('btnWrong').onclick=()=>{ renderWrong(); show('wrong'); };
+$('btnPracticeWrong').onclick=()=>{ const l=wrongList(); if(l.length) startSet(l); };
+
+/* 重置错题本：只清掉错词标记，已练次数与掌握记录保持不变 */
+$('btnResetWrong').onclick=()=>{
+  const list=wrongList();
+  if(!list.length){ toast('错题本已经是空的'); return; }
+  if(!confirm('清空错题本？\n\n将移除 '+list.length+' 个错词的记录，已练次数和掌握数不变。此操作无法撤销。')) return;
+  let n=0;
+  list.forEach(d=>{ const c=store.cards[d.id]; if(c){ c.w=0; n++; } });
+  save(); renderWrong(); renderHome();
+  toast('已清空 '+n+' 个错词');
+};
+$('btnAgain').onclick=()=>startSet();
+$('btnRetryWrong').onclick=()=>{ if(wrongD.length) startSet(wrongD.slice()); };
+$('btnAddManual').onclick=()=>{ show('add'); };
+$('btnAddClear').onclick=()=>{ $('addBox').value=''; $('addMsg').textContent=''; };
+
+$('typeList').addEventListener('click',e=>{
+  const b=e.target.closest('.type'); if(!b) return;
+  prefs.type=b.dataset.k; savePrefs(); renderHome();
+});
+const pickScope=e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  prefs.scope=b.dataset.s; savePrefs(); renderHome();
+};
+$('scopeChips').addEventListener('click',pickScope);
+$('scopeSub').addEventListener('click',pickScope);
+
+$('btnAddOk').onclick=()=>{
+  const raw=$('addBox').value.trim();
+  if(!raw){ $('addMsg').textContent='先贴几个词进来'; return; }
+  const parts=raw.split(/[\n,;，；\s]+/).map(s=>s.trim().toLowerCase()).filter(Boolean);
+  const hit=[],miss=[];
+  parts.forEach(t=>{
+    let d=byWord[t];
+    if(!d){ const c=DATA.filter(x=>x.w.toLowerCase().startsWith(t)); if(c.length===1) d=c[0]; }
+    if(d){ const c=cardOf(d); if(!c.w) c.w=1; c.l=0; c.t=Date.now(); hit.push(d.w); } else miss.push(t);
+  });
+  save(); renderHome();
+  $('addMsg').innerHTML=`已加入 ${hit.length} 个${hit.length?'：'+esc(hit.join('、')):''}`+
+    (miss.length?`<br>词库里没有：${esc(miss.join('、'))}`:'');
+};
+
+/* 导入 / 备份 */
+function doImport(text){
+  let added=0,skipped=0;
+  const t=String(text||'').trim();
+  let obj=null;
+  try{ obj=JSON.parse(t); }catch(e){}
+  if(obj&&obj.cards){
+    Object.keys(obj.cards).forEach(k=>{
+      const v=obj.cards[k]||{};
+      const d=byId[k]||byWord[String(k).split('|')[0].trim().toLowerCase()];
+      if(!d){ skipped++; return; }
+      const c=cardOf(d);
+      if((v.w||0)>0&&(v.l!==1)){ c.w=Math.max(c.w,v.w||1); c.l=0; added++; }
+    });
+  }else{
+    t.split(/[\n,;，；\s"'\[\]{}|]+/).map(s=>s.trim().toLowerCase()).filter(Boolean).forEach(w=>{
+      const d=byWord[w]||(DATA.filter(x=>x.w.toLowerCase().startsWith(w)).length===1?DATA.find(x=>x.w.toLowerCase().startsWith(w)):null);
+      if(d){ const c=cardOf(d); if(!c.w) c.w=1; c.l=0; c.t=Date.now(); added++; } else skipped++;
+    });
+  }
+  save(); renderHome();
+  return {added,skipped};
+}
+
+function toast(msg){
+  const el=document.createElement('div'); el.className='toast'; el.textContent=msg;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1800);
+}
+
+/* 弹层 */
+function dlg(title,desc,val,okText,onOk){
+  const wrap=document.createElement('div'); wrap.className='mask';
+  wrap.innerHTML=`<div class="dlg"><h3>${esc(title)}</h3><p>${esc(desc)}</p>
+    <textarea id="dlgBox"></textarea><div class="msg" id="dlgMsg"></div>
+    <div class="acts"><button class="btn btn-ghost" id="dlgCancel">关闭</button>
+    <button class="btn btn-main" id="dlgOk">${esc(okText)}</button></div></div>`;
+  document.body.appendChild(wrap);
+  const box=wrap.querySelector('#dlgBox'); box.value=val||'';
+  wrap.querySelector('#dlgCancel').onclick=()=>wrap.remove();
+  wrap.addEventListener('click',e=>{ if(e.target===wrap) wrap.remove(); });
+  wrap.querySelector('#dlgOk').onclick=()=>{ onOk(box.value,wrap); };
+  setTimeout(()=>box.focus(),80);
+  return wrap;
+}
+
+$('btnExport').onclick=()=>{
+  const w=dlg('备份进度','复制这段文本，换手机或清缓存后用「恢复进度」粘回来。',JSON.stringify(store),'复制',(v,wrap)=>{
+    const box=wrap.querySelector('#dlgBox'); box.select();
+    try{ document.execCommand('copy'); wrap.querySelector('#dlgOk').textContent='已复制 ✓'; }
+    catch(e){ wrap.querySelector('#dlgOk').textContent='请长按手动复制'; }
+  });
+};
+$('btnImportBak').onclick=()=>{
+  dlg('恢复进度','把备份内容整段粘进来，会覆盖当前进度。','','恢复',(v,wrap)=>{
+    try{
+      const o=JSON.parse(v); if(!o||!o.cards) throw 0;
+      store=o; if(!store.stat) store.stat={a:0,r:0}; save();
+      wrap.remove(); renderHome(); show('home');
+      toast('已恢复 '+Object.keys(o.cards).length+' 条记录');
+    }catch(e){ wrap.querySelector('#dlgMsg').textContent='格式不对，要贴完整的备份文本'; }
+  });
+};
+$('btnImport').onclick=()=>{
+  const wrap=document.createElement('div'); wrap.className='mask';
+  wrap.innerHTML=`<div class="dlg"><h3>从别处导入错词</h3>
+    <p>支持：闪卡的进度 JSON、本应用备份、纯词表（一行一个）。</p>
+    <div class="acts" style="margin-top:0">
+      <button class="btn btn-ghost" id="impClip">读剪贴板</button>
+      <button class="btn btn-ghost" id="impFile">选文件</button>
+    </div>
+    <textarea id="impBox" style="margin-top:10px" placeholder="也可以直接粘贴到这里"></textarea>
+    <div class="msg" id="impMsg"></div>
+    <div class="acts"><button class="btn btn-ghost" id="impCancel">关闭</button>
+      <button class="btn btn-main" id="impOk">导入</button></div>
+    <input type="file" id="fileInput" accept=".json,.txt,text/plain,application/json" hidden></div>`;
+  document.body.appendChild(wrap);
+  const box=wrap.querySelector('#impBox'), msg=wrap.querySelector('#impMsg');
+  const run=(text)=>{
+    if(!String(text||'').trim()){ msg.textContent='没有内容'; return; }
+    const r=doImport(text);
+    msg.textContent=`导入了 ${r.added} 个错词`+(r.skipped?`，${r.skipped} 个没匹配上`:'');
+    setTimeout(()=>{ wrap.remove(); renderWrong(); },700);
+  };
+  wrap.querySelector('#impClip').onclick=async()=>{
+    try{ const t=await navigator.clipboard.readText(); box.value=t; run(t); }
+    catch(e){ msg.textContent='读不到剪贴板，请手动粘贴'; }
+  };
+  wrap.querySelector('#impFile').onclick=()=>wrap.querySelector('#fileInput').click();
+  wrap.querySelector('#fileInput').onchange=e=>{
+    const f=e.target.files[0]; if(!f) return;
+    const rd=new FileReader(); rd.onload=()=>{ box.value=rd.result; run(rd.result); }; rd.readAsText(f);
+  };
+  wrap.querySelector('#impCancel').onclick=()=>wrap.remove();
+  wrap.querySelector('#impOk').onclick=()=>run(box.value);
+  wrap.addEventListener('click',e=>{ if(e.target===wrap) wrap.remove(); });
+};
+
+/* ---------- 初始化 ---------- */
+bindQuiz();
+renderHome();
+show('home');
+(function(){
+  const w=$('storeWarn');
+  if(STORE_MODE==='local'){ w.hidden=true; return; }
+  w.hidden=false;
+  if(STORE_MODE==='session'){
+    w.textContent='进度只能存在当前标签页，关掉就没了。想要长期保存，请用手机自带浏览器（Safari / Chrome）打开这个文件。';
+  }else{
+    w.textContent=IN_WECHAT
+      ? '现在是在微信里预览，进度存不住。点右上角「···」→「在浏览器打开」，之后进度就能一直保存。'
+      : '当前打开方式无法保存进度，关掉页面记录就没了。请用手机自带浏览器（Safari / Chrome）打开这个文件。';
+  }
+})();
+
+/* 链接导入：#w=sexism,bias */
+(function(){
+  const m=location.hash.match(/[#&]w=([^&]+)/);
+  if(!m) return;
+  try{
+    doImport(decodeURIComponent(m[1]).replace(/\+/g,' '));
+    history.replaceState(null,'',location.pathname+location.search);
+    renderWrong(); show('wrong');
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
